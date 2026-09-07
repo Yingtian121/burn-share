@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OOO 8月市场竞争态势研判与9月策略建议</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg: #f6f7f9;
+    --panel: #ffffff;
+    --panel2: #f0f2f6;
+    --border: #e3e6ec;
+    --gold: #b8860b;
+    --gold-dim: rgba(184,134,11,0.08);
+    --gold-line: rgba(184,134,11,0.30);
+    --red: #c0392b;
+    --red-dim: rgba(192,57,43,0.06);
+    --red-line: rgba(192,57,43,0.28);
+    --green: #2e7d4f;
+    --green-dim: rgba(46,125,79,0.06);
+    --blue: #2f5d9e;
+    --blue-dim: rgba(47,93,158,0.06);
+    --ink: #1f2937;
+    --dim: #5b6a80;
+    --muted: #93a1b4;
+  }
+  body {
+    font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg); color: var(--ink);
+    font-size: 14px; line-height: 1.75;
+  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-thumb { background: #cdd4dd; border-radius: 3px; }
+
+  .wrap { display: flex; min-height: 100vh; }
+
+  /* ===== 侧边目录 ===== */
+  .toc {
+    width: 216px; flex-shrink: 0;
+    border-right: 1px solid var(--border);
+    padding: 28px 0;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    background: var(--panel);
+  }
+  .toc-brand { padding: 0 22px 18px; border-bottom: 1px solid var(--border); margin-bottom: 14px; }
+  .toc-brand .k { font-size: 11px; color: var(--muted); letter-spacing: 3px; }
+  .toc-brand .name { font-size: 15px; font-weight: 800; color: var(--gold); margin-top: 4px; }
+  .toc-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 22px; color: var(--dim); font-size: 13px;
+    cursor: pointer; border-left: 2px solid transparent;
+    transition: all 0.2s; text-decoration: none;
+  }
+  .toc-item:hover { color: var(--ink); background: var(--panel2); }
+  .toc-item.active { color: var(--gold); border-left-color: var(--gold); background: var(--gold-dim); font-weight: 700; }
+  .toc-item .num { font-size: 11px; color: var(--muted); width: 16px; }
+  .toc-item.active .num { color: var(--gold); }
+
+  .main { flex: 1; max-width: 940px; margin: 0 auto; padding: 36px 44px 100px; }
+
+  /* ===== 封面 ===== */
+  .cover {
+    padding: 56px 40px 44px; margin-bottom: 40px;
+    background: linear-gradient(160deg, #ffffff, #f7f3e8);
+    border: 1px solid var(--border); border-radius: 6px;
+    text-align: center; position: relative;
+  }
+  .cover .kicker { font-size: 12px; color: var(--muted); letter-spacing: 5px; margin-bottom: 14px; }
+  .cover h1 { font-size: 30px; font-weight: 800; letter-spacing: 1px; margin-bottom: 10px; }
+  .cover h1 span { color: var(--gold); }
+  .cover .sub { color: var(--dim); font-size: 14px; letter-spacing: 2px; margin-bottom: 26px; }
+  .cover-meta {
+    display: flex; justify-content: center; gap: 44px; font-size: 12px; color: var(--muted);
+    border-top: 1px dashed var(--border); padding-top: 18px;
+  }
+  .cover-meta div b { display: block; color: var(--dim); font-size: 13px; margin-top: 3px; }
+
+  /* ===== 章节 ===== */
+  .sec { margin-bottom: 52px; scroll-margin-top: 20px; }
+  .sec-head { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+  .sec-no {
+    font-size: 11px; color: var(--gold); font-weight: 800; letter-spacing: 1px;
+    border: 1px solid var(--gold-line); padding: 3px 9px; border-radius: 3px;
+    background: var(--gold-dim); white-space: nowrap;
+  }
+  .sec-title { font-size: 22px; font-weight: 800; letter-spacing: 0.5px; }
+  .sec-rule { flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold-line), transparent); }
+  .sec-lead { color: var(--dim); margin-bottom: 22px; padding-left: 2px; }
+
+  .sub { margin-bottom: 22px; }
+  .sub-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .sub-title::before { content: ''; width: 13px; height: 2px; background: var(--gold); }
+
+  /* 卡片 */
+  .grid { display: grid; gap: 12px; }
+  .g2 { grid-template-columns: 1fr 1fr; }
+  .g3 { grid-template-columns: 1fr 1fr 1fr; }
+  @media (max-width: 860px) { .g2,.g3 { grid-template-columns: 1fr; } .toc { display: none; } .main { padding: 20px; } }
+
+  .card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 6px; padding: 16px 18px;
+  }
+  .card.warn { border-left: 3px solid var(--red); background: linear-gradient(90deg, var(--red-dim), var(--panel)); }
+  .card.pos { border-left: 3px solid var(--green); background: linear-gradient(90deg, var(--green-dim), var(--panel)); }
+  .card.info { border-left: 3px solid var(--blue); background: linear-gradient(90deg, var(--blue-dim), var(--panel)); }
+  .card.key { border-left: 3px solid var(--gold); background: linear-gradient(90deg, var(--gold-dim), var(--panel)); }
+  .card h4 { font-size: 13.5px; font-weight: 700; margin-bottom: 8px; }
+  .card .body { color: var(--dim); font-size: 13px; }
+  .card .body b { color: var(--ink); }
+  .card ul { list-style: none; }
+  .card li { padding: 2px 0 2px 15px; position: relative; color: var(--dim); font-size: 13px; }
+  .card li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); }
+
+  /* 竞品卡 */
+  .intel { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--panel); }
+  .intel-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px; background: var(--panel2); border-bottom: 1px solid var(--border);
+  }
+  .intel-head .name { font-weight: 800; font-size: 14px; }
+  .tag { font-size: 11px; padding: 2px 9px; border-radius: 3px; font-weight: 700; }
+  .tag-blue { background: rgba(47,93,158,0.1); color: var(--blue); }
+  .tag-pink { background: rgba(200,90,120,0.1); color: #b04a6a; }
+  .tag-purple { background: rgba(120,80,180,0.1); color: #7a50b4; }
+  .tag-gold { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-line); }
+  .intel-body { padding: 12px 14px; color: var(--dim); font-size: 12.5px; }
+  .intel-body li { list-style: none; padding: 2px 0 2px 13px; position: relative; }
+  .intel-body li::before { content: '·'; position: absolute; left: 0; color: var(--muted); font-weight: 800; }
+
+  /* 数据条 */
+  .data-strip {
+    display: flex; align-items: center; justify-content: center; gap: 28px;
+    padding: 20px; background: var(--panel); border: 1px solid var(--border);
+    border-radius: 6px; margin: 12px 0;
+  }
+  .data-cell { text-align: center; }
+  .data-cell .v { font-size: 28px; font-weight: 800; }
+  .data-cell .l { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .data-arrow { font-size: 20px; color: var(--gold); }
+  .v-red { color: var(--red); } .v-gold { color: var(--gold); } .v-dim { color: var(--dim); } .v-blue { color: var(--blue); }
+
+  /* 结论条 */
+  .verdict {
+    margin: 18px 0; padding: 14px 18px;
+    border: 1px solid var(--gold-line); border-radius: 6px;
+    background: linear-gradient(120deg, var(--gold-dim), transparent 75%);
+    font-size: 13px; color: #6b5416; line-height: 1.85; position: relative;
+  }
+  .verdict::before {
+    content: '要点提示'; position: absolute; top: -10px; left: 14px;
+    background: var(--bg); padding: 1px 9px; font-size: 10.5px; font-weight: 800;
+    color: var(--gold); letter-spacing: 3px; border: 1px solid var(--gold-line); border-radius: 3px;
+  }
+  .verdict b { color: var(--ink); }
+  .verdict.red { border-color: var(--red-line); background: linear-gradient(120deg, var(--red-dim), transparent 75%); }
+  .verdict.red::before { content: '风险提示'; color: var(--red); border-color: var(--red-line); }
+  .verdict.blue { border-color: rgba(47,93,158,0.3); background: linear-gradient(120deg, var(--blue-dim), transparent 75%); }
+  .verdict.blue::before { content: '研判要点'; color: var(--blue); border-color: rgba(47,93,158,0.3); }
+
+  /* VS 对比 */
+  .vs { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: stretch; margin: 12px 0; }
+  .vs .cell { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 16px; text-align: center; }
+  .vs .mid { display: flex; align-items: center; color: var(--muted); font-size: 16px; font-weight: 800; }
+
+  /* 表格 */
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 12px 0; background: var(--panel); }
+  th, td { border: 1px solid var(--border); padding: 9px 12px; text-align: center; }
+  th { background: var(--panel2); color: var(--dim); font-weight: 700; }
+  td { color: var(--dim); }
+  td.bad { color: var(--red); font-weight: 700; }
+  td.good { color: var(--green); font-weight: 700; }
+  td.gold { color: var(--gold); font-weight: 700; }
+
+  /* 时间节奏 */
+  .ops { position: relative; margin: 20px 0 6px; padding-left: 26px; }
+  .ops::before { content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, var(--gold), #d8dde5); }
+  .op-item { position: relative; padding-bottom: 20px; }
+  .op-item:last-child { padding-bottom: 0; }
+  .op-item::before {
+    content: ''; position: absolute; left: -24px; top: 6px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: #fff; border: 2px solid var(--gold);
+  }
+  .op-time { font-size: 10.5px; color: var(--gold); font-weight: 800; letter-spacing: 1.5px; }
+  .op-name { font-size: 14.5px; font-weight: 800; margin: 2px 0 4px; }
+  .op-desc { color: var(--dim); font-size: 12.5px; }
+
+  /* 阶段条 */
+  .phase {
+    display: flex; align-items: center; gap: 12px; margin: 22px 0 12px;
+    padding: 10px 16px; border-radius: 6px;
+    background: var(--panel); border: 1px solid var(--border);
+  }
+  .phase .p-no {
+    width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 14px; border: 2px solid var(--gold); color: var(--gold);
+  }
+  .phase .p-t { font-weight: 800; font-size: 15px; }
+  .phase .p-d { color: var(--muted); font-size: 11.5px; margin-left: auto; text-align: right; }
+
+  .footer { text-align: center; color: var(--muted); font-size: 12px; padding: 36px 0 16px; letter-spacing: 1.5px; }
+
+  .fade { opacity: 0; transform: translateY(12px); transition: all .6s ease; }
+  .fade.on { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- 侧边目录 -->
+  <nav class="toc">
+    <div class="toc-brand">
+      <div class="k">MARKET BRIEF</div>
+      <div class="name">修容品类策略研判</div>
+    </div>
+    <a class="toc-item" href="#cover"><span class="num">◎</span>汇报导语</a>
+    <a class="toc-item" href="#s1"><span class="num">一</span>市场态势</a>
+    <a class="toc-item" href="#s2"><span class="num">二</span>关键发现</a>
+    <a class="toc-item" href="#s3"><span class="num">三</span>品牌处境</a>
+    <a class="toc-item" href="#s4"><span class="num">四</span>策略建议</a>
+    <a class="toc-item" href="#s5"><span class="num">五</span>节奏安排</a>
+    <a class="toc-item" href="#s6"><span class="num">六</span>风险与对策</a>
+    <a class="toc-item" href="#s7"><span class="num">七</span>待决事项</a>
+  </nav>
+
+  <!-- 正文 -->
+  <div class="main">
+
+    <!-- 封面 -->
+    <div class="cover" id="cover">
+      <div class="kicker">修容类目 · 双十一前哨研判</div>
+      <h1>8月市场竞争态势研判<br>与<span>9月策略建议</span></h1>
+      <div class="sub">抖音修容盘赛道变化 · 品牌应对思路（供决策参考）</div>
+      <div class="cover-meta">
+        <div>研判月份<b>8月</b></div>
+        <div>关键节点<b>双十一大促</b></div>
+        <div>关注竞品<b>BABI / 橘朵 / 木柯诗</b></div>
+        <div>汇报内容<b>研判 + 建议 + 待决项</b></div>
+      </div>
+    </div>
+
+    <!-- 一、市场态势 -->
+    <section class="sec fade" id="s1">
+      <div class="sec-head"><span class="sec-no">第一部分</span><h2 class="sec-title">市场态势：竞品在做什么</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">先同步 8 月竞品动作的实况，作为后续判断的事实基础。</p>
+
+      <div class="grid g3">
+        <div class="intel">
+          <div class="intel-head"><span class="name">BABI</span><span class="tag tag-blue">内容型打法</span></div>
+          <div class="intel-body">
+            <ul>
+              <li>持续爆文输出，内容惯性强</li>
+              <li>前期爆文叠加，生意持续增长</li>
+              <li>客单价约 ¥69</li>
+              <li><b style="color:var(--gold)">人群渗透率已与 OOO 持平</b></li>
+            </ul>
+          </div>
+        </div>
+        <div class="intel">
+          <div class="intel-head"><span class="name">橘朵</span><span class="tag tag-pink">多线并进</span></div>
+          <div class="intel-body">
+            <ul>
+              <li>西瓜太郎联名上市</li>
+              <li>新品 + 新品大爆文输出</li>
+              <li>新品直播间启动</li>
+              <li>动作最密集，声量与渠道双开</li>
+            </ul>
+          </div>
+        </div>
+        <div class="intel">
+          <div class="intel-head"><span class="name">木柯诗</span><span class="tag tag-purple">品牌动作先行</span></div>
+          <div class="intel-body">
+            <ul>
+              <li>官宣亚太区代言人</li>
+              <li>品牌声量快速拉升</li>
+              <li>暂以品牌动作为主</li>
+              <li>后续不排除入局膏状修容盘</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub" style="margin-top:20px;">
+        <div class="sub-title">8月战况数据：头部品牌人群渗透率快速提升</div>
+        <div class="data-strip">
+          <div class="data-cell"><div class="v v-dim">22.1%</div><div class="l">7月 · BABI/橘朵/木柯诗 渗透率合计</div></div>
+          <div class="data-arrow">→</div>
+          <div class="data-cell"><div class="v v-gold">30.4%</div><div class="l">8月 · 三家合计渗透率</div></div>
+          <div class="data-cell"><div class="v v-red">+8.3pct</div><div class="l">单月提升</div></div>
+        </div>
+        <div class="verdict">
+          头部品牌（含部分 OOO 对标品）的人群渗透在 8 月出现明显提升。品类心智正在向膏状修容盘头部品牌集中，<b>这一趋势对品牌后续应对至关重要</b>。
+        </div>
+      </div>
+    </section>
+
+    <!-- 二、关键发现 -->
+    <section class="sec fade" id="s2">
+      <div class="sec-head"><span class="sec-no">第二部分</span><h2 class="sec-title">三个关键发现</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">以下三点是本报告的核心判断，也是后续策略建议的逻辑基础。</p>
+
+      <div class="sub">
+        <div class="sub-title">发现一：低价并没有换来人群增长</div>
+        <div class="vs">
+          <div class="cell">
+            <div class="tag tag-blue" style="font-size:12px;padding:3px 12px;">BABI</div>
+            <div style="font-size:32px;font-weight:800;color:var(--blue);margin:8px 0;">¥69</div>
+            <div style="font-size:11.5px;color:var(--muted);">8月购买人群 <b style="color:var(--ink);font-size:15px;">334,405</b></div>
+          </div>
+          <div class="mid">对比</div>
+          <div class="cell" style="border-color:var(--gold-line);">
+            <div class="tag tag-gold" style="font-size:12px;padding:3px 12px;">OOO</div>
+            <div style="font-size:32px;font-weight:800;color:var(--gold);margin:8px 0;">¥45</div>
+            <div style="font-size:11.5px;color:var(--muted);">8月购买人群 <b style="color:var(--ink);font-size:15px;">333,149</b></div>
+          </div>
+        </div>
+        <div class="verdict">
+          OOO 价格比 BABI 低约 35%，但购买人群数几乎持平（33.3万 vs 33.4万）。这说明<b>当前竞争的主要驱动因素并非价格，而是产品形态与内容方向</b>——用户决策更看重"是不是膏状修容盘、内容符不符合主流妆容趋势"。这是本次研判最重要的一条。
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">发现二：橘朵做了内容差异化，客观上在放大膏状盘品类</div>
+        <div class="card info">
+          <h4>现象</h4>
+          <div class="body">橘朵与 BABI 虽同处膏状修容盘赛道，但橘朵<b>并未在内容端直接复制 BABI，而是走了内容人群的差异化</b>。这种差异化会进一步扩大该品类的人群池子；木柯诗后续也存在入局可能。</div>
+        </div>
+        <div class="grid g2" style="margin-top:12px;">
+          <div class="card warn">
+            <h4>对 OOO 的影响 ① 人群空间被压缩</h4>
+            <div class="body">橘朵新修容盘的内容人群与 OOO 修容人群<b>相似度较高、且质量更高</b>——若持续放大，将压缩 OOO 的人群增长空间。</div>
+          </div>
+          <div class="card warn">
+            <h4>对 OOO 的影响 ② 品类被"重新定义"</h4>
+            <div class="body">头部品牌持续内容放大后，更多年轻人群在选择妆容时可能<b>首选水光妆容对应的膏状修容盘</b>——这是品类层面的结构变化，值得重点关注。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">发现三：9月双十一前哨，竞品大概率进一步加码</div>
+        <div class="grid g2">
+          <div class="card">
+            <h4>BABI 9月推演</h4>
+            <div class="body">延续爆文输出 + 前期爆文积累叠加，<b>生意预计持续增长</b>——其增长已由内容惯性驱动，而非单次爆发。</div>
+          </div>
+          <div class="card">
+            <h4>橘朵 9月推演</h4>
+            <div class="body">明星官宣 + 新品"好气色盘"重点露出 + 直播间渠道布局完成后，<b>短挂端存在重点投入的可能</b>——若产出爆文，对大盘趋势的推动会更明显。</div>
+          </div>
+        </div>
+        <div class="verdict blue">
+          BABI 与橘朵同处修容 TOP 前3，若 9 月同时加码，会把<b>水光妆容推至新的热度</b>，进而影响修容大盘的妆容趋势与内容趋势。需要认识到：9-12月面对的不只是个别竞品，<b>而是一波由头部品牌共同推动的品类趋势浪潮</b>。
+        </div>
+      </div>
+    </section>
+
+    <!-- 三、品牌处境 -->
+    <section class="sec fade" id="s3">
+      <div class="sec-head"><span class="sec-no">第三部分</span><h2 class="sec-title">OOO 当前处境：三维度拆解</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">把优势与短板摆到桌面上，才能判断哪些抓手可用、哪些不可用。</p>
+
+      <table>
+        <tr><th style="width:18%">维度</th><th style="width:28%">OOO 现状</th><th style="width:28%">市场趋势/竞品</th><th style="width:26%">初步判断</th></tr>
+        <tr><td>产品形态</td><td>修容笔</td><td>膏状修容盘成为主流</td><td class="bad">短期承压</td></tr>
+        <tr><td>内容方向</td><td>自有内容体系</td><td>水光妆容主导大盘内容</td><td class="bad">需应对</td></tr>
+        <tr><td>价格</td><td class="gold">约 ¥45（更低）</td><td>BABI 约 ¥69</td><td class="good">相对优势</td></tr>
+      </table>
+
+      <div class="grid g2" style="margin-top:14px;">
+        <div class="card pos">
+          <h4>可以用的牌</h4>
+          <ul>
+            <li><b>价格带更低</b>：大促节点具备放价空间</li>
+            <li><b>品牌内容资产</b>：可承接明星与东方纹样两波营销热度</li>
+            <li><b>矩阵产品储备</b>：修容棒、遮瑕可作二梯队协同</li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <h4>短期打不动的点</h4>
+          <ul>
+            <li><b>产品形态</b>：膏状修容盘开发跟进需要时间，双十一前难以正面硬拼</li>
+            <li><b>内容主导权</b>：水光妆容相关内容话语权目前在头部竞品手中</li>
+            <li><b>价格失效风险</b>：发现一已证明——单靠低价在当前阶段难以撬动人群</li>
+          </ul>
+        </div>
+      </div>
+      <div class="verdict blue">
+        综合判断：<b>双十一前的产品形态短板短期难以补齐</b>；生意目标又处于高位。因此在战术层面，价格是当前阶段最可操作的杠杆；但按发现一，价格必须先配合"兴趣维护"，否则难以生效。这就引出第四部分的策略建议。
+      </div>
+    </section>
+
+    <!-- 四、策略建议 -->
+    <section class="sec fade" id="s4">
+      <div class="sec-head"><span class="sec-no">第四部分</span><h2 class="sec-title">策略建议：分阶段应对思路</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">建议按三个阶段推进，逻辑主线是：先守住生意基本盘 → 再建差异化矩阵 → 后补产品形态短板。以下为建议方向，具体力度与取舍请领导裁定。</p>
+
+      <div class="phase">
+        <div class="p-no">壹</div>
+        <div><div class="p-t">阶段一 · 9-11月：守量 + 蓄水</div></div>
+        <div class="p-d">建议思路：以价格杠杆保大促销量，同步维护用户兴趣</div>
+      </div>
+      <div class="ops">
+        <div class="op-item">
+          <div class="op-time">建议动作 1 · 9月</div>
+          <div class="op-name">明星进直播间，维护产品热度</div>
+          <div class="op-desc">借明星势能稳住产品的搜索量与用户兴趣，避免热度断崖——这是价格竞争生效的前提条件。</div>
+        </div>
+        <div class="op-item">
+          <div class="op-time">建议动作 2 · 9-10月</div>
+          <div class="op-name">东方纹样营销（同时作为一次方向测试）</div>
+          <div class="op-desc">一举两用：一方面维护用户兴趣；另一方面<b>实际测试国风方向的爆发力</b>——若数据验证可行，短挂端可快速跟进国风内容，为后续差异化做准备。</div>
+        </div>
+        <div class="op-item">
+          <div class="op-time">建议动作 3 · 10-11月</div>
+          <div class="op-name">短挂内容双线准备</div>
+          <div class="op-desc">线一：国风方向内容（视测试结果跟进）；线二：围绕行业水光妆容，找到与 OOO 修容笔契合的内容角度——<b>顺应主流趋势，而非逆势对抗</b>。</div>
+        </div>
+        <div class="op-item">
+          <div class="op-time">建议动作 4 · 双十一</div>
+          <div class="op-name">大促价格杠杆集中释放</div>
+          <div class="op-desc">兴趣蓄水完成 + 大促流量窗口 = 价格竞争力充分释放，目标是守住生意基本盘。</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="p-no">贰</div>
+        <div><div class="p-t">阶段二 · 11月-Q1：建差异化矩阵</div></div>
+        <div class="p-d">建议思路：以国风妆容构建品牌妆容矩阵</div>
+      </div>
+      <div class="card">
+        <h4>国风妆容体系构建建议</h4>
+        <div class="body">
+          围绕国风妆容做 OOO 新妆容的构建，逐步形成：
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0;">
+            <span class="tag tag-gold" style="font-size:12.5px;padding:5px 12px;">主力 · 亚裔妆</span>
+            <span style="color:var(--muted)">+</span>
+            <span class="tag tag-gold" style="font-size:12.5px;padding:5px 12px;">主力 · 国风妆容</span>
+            <span style="color:var(--muted)">+</span>
+            <span class="tag tag-blue" style="font-size:12.5px;padding:5px 12px;">辅助 · 水光妆容</span>
+          </div>
+          即"亚裔妆 + 国风妆容为主、水光妆容为辅"的品牌妆容矩阵。在水光妆容方向保持产品开发跟进，与橘朵形成<b>协同而非对抗</b>，在主流趋势中分得 BABI 的市场空间——核心思路是<b>不与趋势对抗，而是借势完成差异化卡位</b>。
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="p-no">叁</div>
+        <div><div class="p-t">阶段三 · 贯穿全程：产品补位</div></div>
+        <div class="p-d">建议思路：主力产品跟进 + 二梯队产品协同</div>
+      </div>
+      <div class="grid g2">
+        <div class="card">
+          <h4>产品线 A：主流趋势产品跟进</h4>
+          <div class="body">膏状修容盘方向的开发<b>快速跟进</b>——承认趋势、补齐形态短板，是中期摆脱被动地位的根本解。</div>
+        </div>
+        <div class="card">
+          <h4>产品线 B：二梯队产品（修容棒 + 遮瑕）</h4>
+          <div class="body">同步启动二梯队。关键需评估：<b>二梯队在大促期间的切入时机</b>，以及在保证主推产品资源不受影响的前提下如何协同跟进。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 五、节奏安排 -->
+    <section class="sec fade" id="s5">
+      <div class="sec-head"><span class="sec-no">第五部分</span><h2 class="sec-title">整体节奏：一张图看清</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">将第三、四部分的建议浓缩为时间轴，便于整体把握。</p>
+      <table>
+        <tr><th style="width:14%">时间</th><th style="width:30%">关键动作</th><th style="width:34%">目的</th><th style="width:22%">阶段主线</th></tr>
+        <tr><td>9月</td><td>明星进直播间</td><td>维护产品热度与搜索</td><td rowspan="2">蓄水期</td></tr>
+        <tr><td>9-10月</td><td>东方纹样营销（兼方向测试）</td><td>稳兴趣 + 测国风爆发力</td></tr>
+        <tr><td>10-11月</td><td>短挂双线内容准备</td><td>国风 + 水光两方向内容备货</td><td>承接期</td></tr>
+        <tr><td>双十一</td><td class="gold">价格杠杆集中释放</td><td class="gold">守住生意基本盘</td><td class="gold">放量期</td></tr>
+        <tr><td>11月-Q1</td><td>国风妆容体系构建</td><td>形成品牌妆容矩阵</td><td rowspan="2">建矩阵期</td></tr>
+        <tr><td>贯穿</td><td>膏状盘跟进 + 二梯队协同</td><td>产品补位 + 风险对冲</td></tr>
+      </table>
+      <div class="verdict">
+        整体节奏建议：<b>9-10月蓄水（兴趣 + 测试）→ 双十一放量（价格杠杆守生意）→ Q1建矩阵（国风妆容差异化）</b>，产品端同步推进、贯穿全程。三个阶段的资源投入配比与优先级，建议按届时生意数据动态调整。
+      </div>
+    </section>
+
+    <!-- 六、风险与对策 -->
+    <section class="sec fade" id="s6">
+      <div class="sec-head"><span class="sec-no">第六部分</span><h2 class="sec-title">风险提示与应对思考</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">把最坏的情况先想清楚：如果价格杠杆没能扛住，底线在哪里？</p>
+      <div class="grid g2">
+        <div class="card warn">
+          <h4>风险一：主推产品单点承压</h4>
+          <div class="body" style="line-height:1.9;">
+            若大促资源<b>集中投入主推产品</b>，而该产品正处于不利的市场竞争地位——一旦价格抓手没能扛住市场不利影响，可能导致<b style="color:var(--red)">生意出现较大波动</b>。这是单点押注的结构性风险。
+          </div>
+        </div>
+        <div class="card pos">
+          <h4>对策思路：二梯队做"保险丝"</h4>
+          <div class="body" style="line-height:1.9;">
+            若二梯队（修容棒 + 遮瑕）能在大促期间<b>通过协调更多资源协同跟进</b>，即使主推承压，二梯队也能承接部分生意盘——相当于为后半年的生意加一道<b style="color:var(--green)">保险</b>。核心原则：二梯队"协同扩容"，而非"内部争抢资源"。
+          </div>
+        </div>
+        <div class="card warn">
+          <h4>风险二：价格竞争的副作用</h4>
+          <div class="body" style="line-height:1.9;">
+            价格竞争可能带来品牌调性稀释、利润压缩、低价预期固化等负向影响——需要提前规划后续的品牌价值补充动作。
+          </div>
+        </div>
+        <div class="card pos">
+          <h4>对策思路：以矩阵夺回价值感</h4>
+          <div class="body" style="line-height:1.9;">
+            阶段二的国风妆容矩阵构建，本质就是用<b>差异化内容与妆容体系</b>，把价格战期间可能损失的价值感重新建立起来——价格战是手段，不是目的。
+          </div>
+        </div>
+      </div>
+      <div class="verdict red">
+        整体思路：<b>不做"主推独赢"式的单点押注</b>——主推打价格杠杆冲量、二梯队同步启动做对冲，两条产品线互为呼应，避免任何单点失守导致全线承压。
+      </div>
+    </section>
+
+    <!-- 七、待决事项 -->
+    <section class="sec fade" id="s7">
+      <div class="sec-head"><span class="sec-no">第七部分</span><h2 class="sec-title">需要领导明确的决策事项</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">以下事项建议在进入大促前拍板，便于团队按既定方向执行。</p>
+      <table>
+        <tr><th style="width:6%">序号</th><th style="width:40%">决策事项</th><th style="width:54%">需要明确的点</th></tr>
+        <tr><td>1</td><td class="gold" style="font-weight:700">生意额 vs 利润（OP）取舍</td><td>若大促中出现只能保一个的局面，优先保哪一个？——直接决定价格杠杆能打多深</td></tr>
+        <tr><td>2</td><td class="gold" style="font-weight:700">国风方向是否立项测试</td><td>东方纹样营销是否按"方向测试"定位，预留短挂跟进的可能？</td></tr>
+        <tr><td>3</td><td class="gold" style="font-weight:700">二梯队大促资源配比</td><td>主推与二梯队（修容棒+遮瑕）的资源分配原则与切入时点</td></tr>
+        <tr><td>4</td><td class="gold" style="font-weight:700">明星 + 东方纹样预算确认</td><td>两波营销投入的预算范围与优先级</td></tr>
+      </table>
+      <div class="verdict">
+        以上建议方向均基于对 8 月竞品动作与人群数据的观察推演，<b>具体执行力度、资源投入与优先级请领导结合整体经营目标裁定</b>。团队可在此基础上细化落地排期。
+      </div>
+    </section>
+
+    <div class="footer">OOO 8月市场态势研判与9月策略建议 · 供内部决策参考</div>
+  </div>
+</div>
+
+<script>
+const fades = document.querySelectorAll('.fade');
+const tocItems = document.querySelectorAll('.toc-item');
+const secs = document.querySelectorAll('.sec, .cover');
+
+function onScroll() {
+  const y = window.scrollY + 160;
+  let activeId = 'cover';
+  secs.forEach(s => { if (s.offsetTop <= y) activeId = s.id; });
+  tocItems.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#' + activeId));
+  fades.forEach(f => {
+    if (f.getBoundingClientRect().top < window.innerHeight - 50) f.classList.add('on');
+  });
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+document.querySelectorAll('.toc-item').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
