@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OOO 品牌 9-12月生意收官执行方案</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg:#f6f7f9; --panel:#ffffff; --panel2:#f0f2f6; --border:#e3e6ec;
+    --gold:#b8860b; --gold-dim:rgba(184,134,11,.08); --gold-line:rgba(184,134,11,.32);
+    --red:#c0392b; --red-dim:rgba(192,57,43,.06); --red-line:rgba(192,57,43,.3);
+    --green:#2e7d4f; --green-dim:rgba(46,125,79,.06);
+    --blue:#2f5d9e; --blue-dim:rgba(47,93,158,.06);
+    --ink:#1f2937; --dim:#5b6a80; --muted:#93a1b4;
+  }
+  body { font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif; background:var(--bg); color:var(--ink); font-size:14px; line-height:1.75; }
+  ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#cdd4dd;border-radius:3px}
+  .wrap{display:flex;min-height:100vh}
+
+  /* TOC */
+  .toc{width:218px;flex-shrink:0;border-right:1px solid var(--border);padding:28px 0;position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--panel)}
+  .toc-brand{padding:0 22px 16px;border-bottom:1px solid var(--border);margin-bottom:12px}
+  .toc-brand .k{font-size:11px;color:var(--muted);letter-spacing:3px}
+  .toc-brand .name{font-size:15px;font-weight:800;color:var(--gold);margin-top:4px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:9px 22px;color:var(--dim);font-size:13px;cursor:pointer;border-left:2px solid transparent;transition:all .2s;text-decoration:none}
+  .toc-item:hover{color:var(--ink);background:var(--panel2)}
+  .toc-item.active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-dim);font-weight:700}
+  .toc-item .num{font-size:11px;color:var(--muted);width:16px}
+  .toc-item.active .num{color:var(--gold)}
+  .main{flex:1;max-width:960px;margin:0 auto;padding:36px 44px 100px}
+
+  /* 封面 */
+  .cover{padding:52px 40px 42px;margin-bottom:36px;background:linear-gradient(160deg,#ffffff,#f7f3e8);border:1px solid var(--border);border-radius:6px;text-align:center;position:relative}
+  .cover .kicker{font-size:12px;color:var(--muted);letter-spacing:5px;margin-bottom:12px}
+  .cover h1{font-size:29px;font-weight:800;letter-spacing:1px;margin-bottom:10px;line-height:1.4}
+  .cover h1 span{color:var(--gold)}
+  .cover .sub{color:var(--dim);font-size:13.5px;letter-spacing:1px;margin-bottom:24px}
+  .cover-meta{display:flex;justify-content:center;gap:36px;font-size:12px;color:var(--muted);border-top:1px dashed var(--border);padding-top:16px;flex-wrap:wrap}
+  .cover-meta div b{display:block;color:var(--dim);font-size:13px;margin-top:3px}
+
+  /* 章节 */
+  .sec{margin-bottom:52px;scroll-margin-top:20px}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  .sec-no{font-size:11px;color:var(--gold);font-weight:800;letter-spacing:1px;border:1px solid var(--gold-line);padding:3px 9px;border-radius:3px;background:var(--gold-dim);white-space:nowrap}
+  .sec-title{font-size:21px;font-weight:800;letter-spacing:.5px}
+  .sec-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--gold-line),transparent)}
+  .sec-lead{color:var(--dim);margin-bottom:20px;padding-left:2px}
+  .sub{margin-bottom:20px}
+  .sub-title{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .sub-title::before{content:'';width:13px;height:2px;background:var(--gold)}
+
+  .grid{display:grid;gap:12px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}
+  @media(max-width:900px){.g2,.g3{grid-template-columns:1fr}.toc{display:none}.main{padding:20px}}
+
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:15px 17px}
+  .card.warn{border-left:3px solid var(--red);background:linear-gradient(90deg,var(--red-dim),var(--panel))}
+  .card.pos{border-left:3px solid var(--green);background:linear-gradient(90deg,var(--green-dim),var(--panel))}
+  .card.info{border-left:3px solid var(--blue);background:linear-gradient(90deg,var(--blue-dim),var(--panel))}
+  .card.key{border-left:3px solid var(--gold);background:linear-gradient(90deg,var(--gold-dim),var(--panel))}
+  .card h4{font-size:13.5px;font-weight:700;margin-bottom:7px}
+  .card .body{color:var(--dim);font-size:12.8px}
+  .card .body b{color:var(--ink)}
+  .card ul{list-style:none}
+  .card li{padding:2px 0 2px 15px;position:relative;color:var(--dim);font-size:12.8px}
+  .card li::before{content:'▸';position:absolute;left:0;color:var(--gold)}
+
+  /* 数据 */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+  @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:14px;text-align:center}
+  .kpi .l{font-size:11.5px;color:var(--muted);margin-bottom:2px}
+  .kpi .v{font-size:22px;font-weight:800}
+  .kpi .s{font-size:11px;color:var(--dim);margin-top:2px}
+  .data-strip{display:flex;align-items:center;justify-content:center;gap:24px;padding:18px;background:var(--panel);border:1px solid var(--border);border-radius:6px;margin:10px 0}
+  .data-cell{text-align:center}
+  .data-cell .v{font-size:26px;font-weight:800}
+  .data-cell .l{font-size:11px;color:var(--muted);margin-top:2px}
+  .data-arrow{font-size:20px;color:var(--gold)}
+  .v-red{color:var(--red)}.v-gold{color:var(--gold)}.v-dim{color:var(--dim)}.v-blue{color:var(--blue)}.v-green{color:var(--green)}
+
+  /* 结论条 */
+  .verdict{margin:16px 0;padding:13px 17px;border:1px solid var(--gold-line);border-radius:6px;background:linear-gradient(120deg,var(--gold-dim),transparent 75%);font-size:12.8px;color:#6b5416;line-height:1.85;position:relative}
+  .verdict::before{content:'要点提示';position:absolute;top:-10px;left:13px;background:var(--bg);padding:1px 8px;font-size:10.5px;font-weight:800;color:var(--gold);letter-spacing:3px;border:1px solid var(--gold-line);border-radius:3px}
+  .verdict b{color:var(--ink)}
+  .verdict.red{border-color:var(--red-line);background:linear-gradient(120deg,var(--red-dim),transparent 75%)}
+  .verdict.red::before{content:'风险提示';color:var(--red);border-color:var(--red-line)}
+  .verdict.blue{border-color:rgba(47,93,158,.3);background:linear-gradient(120deg,var(--blue-dim),transparent 75%)}
+  .verdict.blue::before{content:'研判要点';color:var(--blue);border-color:rgba(47,93,158,.3)}
+
+  /* 表格 */
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin:10px 0;background:var(--panel)}
+  th,td{border:1px solid var(--border);padding:8px 10px;text-align:center}
+  th{background:var(--panel2);color:var(--dim);font-weight:700}
+  td{color:var(--dim)}
+  td.bad{color:var(--red);font-weight:700}td.good{color:var(--green);font-weight:700}td.gold{color:var(--gold);font-weight:700}td.b{font-weight:700;color:var(--ink)}
+  tr.hl{background:#fdf9f0}
+
+  /* 执行链 */
+  .chain{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}
+  .chain .node{flex:1;min-width:150px;background:var(--panel);border:1px solid var(--border);border-top:3px solid var(--gold);border-radius:6px;padding:11px 13px;position:relative}
+  .chain .node .p{font-size:11px;color:var(--gold);font-weight:800;letter-spacing:1px}
+  .chain .node .t{font-weight:800;font-size:13.5px;margin:2px 0}
+  .chain .node .d{font-size:11.5px;color:var(--dim);line-height:1.6}
+  .chain .node.cur{border-top-color:var(--blue)}
+  .chain .node.cur .p{color:var(--blue)}
+
+  /* 时间轴 */
+  .ops{position:relative;margin:18px 0 6px;padding-left:24px}
+  .ops::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--gold),#d8dde5)}
+  .op-item{position:relative;padding-bottom:18px}
+  .op-item:last-child{padding-bottom:0}
+  .op-item::before{content:'';position:absolute;left:-23px;top:6px;width:9px;height:9px;border-radius:50%;background:#fff;border:2px solid var(--gold)}
+  .op-time{font-size:10.5px;color:var(--gold);font-weight:800;letter-spacing:1.5px}
+  .op-name{font-size:14.5px;font-weight:800;margin:2px 0 3px}
+  .op-desc{color:var(--dim);font-size:12.5px}
+  .op-desc b{color:var(--ink)}
+
+  .footer{text-align:center;color:var(--muted);font-size:12px;padding:32px 0 16px;letter-spacing:1px}
+  .fade{opacity:0;transform:translateY(12px);transition:all .6s ease}
+  .fade.on{opacity:1;transform:none}
+  .tag{font-size:11px;padding:2px 9px;border-radius:3px;font-weight:700;display:inline-block}
+  .tag-dy{background:rgba(212,83,58,.1);color:#c0392b}
+  .tag-db{background:rgba(47,93,158,.1);color:var(--blue)}
+  .tag-ds{background:rgba(90,138,58,.1);color:var(--green)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc">
+    <div class="toc-brand"><div class="k">EXECUTION PLAN</div><div class="name">9-12月收官执行方案</div></div>
+    <a class="toc-item" href="#cover"><span class="num">◎</span>方案导语</a>
+    <a class="toc-item" href="#s1"><span class="num">一</span>缺口全景</a>
+    <a class="toc-item" href="#s2"><span class="num">二</span>破局判断</a>
+    <a class="toc-item" href="#s3"><span class="num">三</span>执行总链</a>
+    <a class="toc-item" href="#s4"><span class="num">四</span>分渠道打法</a>
+    <a class="toc-item" href="#s5"><span class="num">五</span>营销-缺口映射</a>
+    <a class="toc-item" href="#s6"><span class="num">六</span>逐月日历</a>
+    <a class="toc-item" href="#s7"><span class="num">七</span>风险与保底</a>
+    <a class="toc-item" href="#s8"><span class="num">八</span>待决事项</a>
+  </nav>
+
+  <div class="main">
+
+    <!-- 封面 -->
+    <div class="cover" id="cover">
+      <div class="kicker">EXECUTION PLAN · 供决策参考</div>
+      <h1>OOO 品牌 9-12月<br><span>生意收官执行方案</span></h1>
+      <div class="sub">结合渠道缺口全景与市场竞争研判 · 抖音 / 达播 / 达短 三渠道</div>
+      <div class="cover-meta">
+        <div>全年目标<b>2.94 亿</b></div>
+        <div>1-8月实际<b>18,103万</b></div>
+        <div>9-12月需完成<b>11,265万</b></div>
+        <div>执行周期<b>9-12月</b></div>
+      </div>
+    </div>
+
+    <!-- 一、缺口全景 -->
+    <section class="sec fade" id="s1">
+      <div class="sec-head"><span class="sec-no">第一部分</span><h2 class="sec-title">缺口全景：不是"达标"，是"超额"</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">先把下半年要填的坑量清楚：按月拆、按渠道拆，执行才有抓手。</p>
+
+      <div class="kpis">
+        <div class="kpi"><div class="l">全年目标</div><div class="v">2.94亿</div><div class="s">抖音1.44亿 / 达播5,968万 / 达短9,000万</div></div>
+        <div class="kpi"><div class="l">1-8月实际</div><div class="v">18,103万</div><div class="s">累计达成率约 94.8%（对1-8月目标）</div></div>
+        <div class="kpi"><div class="l">9-12月需完成</div><div class="v v-red">11,265万</div><div class="s">月均需 2,816万（剩余38%）</div></div>
+        <div class="kpi"><div class="l">9-12月既定目标</div><div class="v">10,268万</div><div class="s">月均2,567万 → <span style="color:var(--red);font-weight:700">须月均超额约10%</span></div></div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">1.1 8月滑坡是本轮缺口的导火索</div>
+        <div class="data-strip">
+          <div class="data-cell"><div class="v v-dim">2,774万</div><div class="l">8月三渠道目标</div></div>
+          <div class="data-arrow">→</div>
+          <div class="data-cell"><div class="v v-red">1,648万</div><div class="l">8月实际</div></div>
+          <div class="data-cell"><div class="v v-red">59.4%</div><div class="l">单月达成率</div></div>
+          <div class="data-cell"><div class="v v-red">-1,126万</div><div class="l">单月缺口（-40.6%）</div></div>
+        </div>
+        <table>
+          <tr><th>渠道</th><th>8月实际</th><th>8月目标</th><th>达成率</th><th>关键信号</th></tr>
+          <tr><td class="b"><span class="tag tag-dy">抖音</span> 内容电商</td><td class="b">915.6万</td><td>1,416万</td><td class="bad">64.7%</td><td>连续两月低于千万线</td></tr>
+          <tr class="hl"><td class="b"><span class="tag tag-db">达播</span></td><td class="bad b">139.6万</td><td>558万</td><td class="bad">25.0%</td><td>环比-74%，年内最低</td></tr>
+          <tr><td class="b"><span class="tag tag-ds">达短</span></td><td class="b">592.6万</td><td>800万</td><td class="bad">74.1%</td><td>自7月 851.7万 回落</td></tr>
+        </table>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">1.2 9-12月各渠道剩余压力（单位：万元）</div>
+        <table>
+          <tr><th>渠道</th><th>9-12月既定目标合计</th><th>需月均</th><th>6-8月实际月均</th><th>需破的坎</th></tr>
+          <tr><td class="b">内容电商-抖音</td><td>5,044</td><td class="gold b">1,374</td><td>983</td><td>历史峰值仅 1,337万 → <span class="bad">须破顶</span></td></tr>
+          <tr class="hl"><td class="b">达播</td><td>2,124</td><td class="gold b">643</td><td>414</td><td>均值仅为需月均 65% → <span class="bad">须大幅回升</span></td></tr>
+          <tr><td class="b">达短</td><td>3,100</td><td class="gold b">799</td><td>699</td><td>相对最接近 → <span class="good">压舱石</span></td></tr>
+        </table>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:6px;">注：9-12月既定目标合计 10,268万 vs 实际需 11,265万，存在约 997万结构性缺口（约+10%），须靠超额完成消化。</div>
+      </div>
+
+      <div class="verdict red">
+        <b>要点提示：</b>下半年的核心困难不是"完成既定目标"，而是<b>每个渠道、每个月都要在既定目标上再超额约10%</b>（合计约997万），才能收口到 100%。而 8月三渠道同时失守（尤其达播塌方至 25%），说明惯性爬坡已不成立，<b>必须靠结构性增量动作补缺口，而非自然增长</b>。
+      </div>
+    </section>
+
+    <!-- 二、破局判断 -->
+    <section class="sec fade" id="s2">
+      <div class="sec-head"><span class="sec-no">第二部分</span><h2 class="sec-title">破局判断：四条底层逻辑</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">方案建立在四条判断之上——每条决定一类动作的取舍。</p>
+      <div class="grid g2">
+        <div class="card warn">
+          <h4>判断① 短期补不了"产品形态"的短板</h4>
+          <div class="body">市场主流趋势倾向竞品的膏状修容盘，而产品开发跟进需要时间。<b>9-12月不能把宝押在正面硬拼产品上</b>，缺口要用营销与渠道动作补，产品动作做中期铺垫。</div>
+        </div>
+        <div class="card key">
+          <h4>判断② 价格是大促期唯一可快速动用的杠杆</h4>
+          <div class="body">低价格未自动带来人群（8月价格悖论已印证），但<b>配合"兴趣维护"后的价格竞争在双11窗口仍是最强变量</b>。前提是先用明星+内容稳住用户兴趣，价格才有意义。</div>
+        </div>
+        <div class="card info">
+          <h4>判断③ 三渠道风险等级不同，不能平均用力</h4>
+          <div class="body">达短最稳（基准仅缺 402万，-4%）→ <b>压舱石</b>；抖音体量最大但需破历史峰值 → <b>攻坚主战场</b>；达播单月波动超300万且8月塌方 → <b>最大变量，须单独设止损与恢复方案</b>。</div>
+        </div>
+        <div class="card pos">
+          <h4>判断④ 997万超额要靠"借势"而非"硬拉"</h4>
+          <div class="body">双11大促流量、水光妆容品类趋势、国风新妆容方向测试——<b>顺势放大是低成本超额来源</b>；二梯队产品（修容棒+遮瑕）则作为11-12月的补量保险。</div>
+        </div>
+      </div>
+      <div class="verdict blue">
+        <b>研判要点：</b>一句话归纳——<b>用渠道修复守住存量基本盘（抖音回千万线、达播止跌、达短续稳），用价格+大促借势冲增量（双11超额），用二梯队与国风方向做保险与差异化（防单点失守）</b>。三条线并行，缺口的997万才有落点。
+      </div>
+    </section>
+
+    <!-- 三、执行总链 -->
+    <section class="sec fade" id="s3">
+      <div class="sec-head"><span class="sec-no">第三部分</span><h2 class="sec-title">执行总链：三步走 × 六动作线</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">全方案浓缩为一条执行链：9月止跌蓄水 → 10-11月大促攻坚 → 12月收官补位。</p>
+
+      <div class="chain">
+        <div class="node cur"><div class="p">STEP 1 · 9月</div><div class="t">止跌 · 蓄水</div><div class="d">抖音回千万线、达播重启；明星进直播间+东方纹样兼测新妆容方向，为价格杠杆预热</div></div>
+        <div class="node"><div class="p">STEP 2 · 10-11月</div><div class="t">大促 · 攻坚</div><div class="d">价格杠杆集中释放冲双11超额；短挂国风/水光双线放大；二梯队切入测试</div></div>
+        <div class="node"><div class="p">STEP 3 · 12月</div><div class="t">收官 · 补位</div><div class="d">年终冲刺收口；二梯队（修容棒+遮瑕）补量；对照缺口清单逐项复盘</div></div>
+      </div>
+
+      <table>
+        <tr><th style="width:16%">动作线</th><th style="width:22%">服务渠道</th><th style="width:34%">核心内容</th><th style="width:14%">节奏</th><th style="width:14%">性质</th></tr>
+        <tr><td class="b">A 明星进直播间</td><td>抖音 + 达播</td><td>稳住产品搜索与兴趣热度，支撑价格杠杆生效前提</td><td>9月+大促前</td><td class="gold">蓄水</td></tr>
+        <tr><td class="b">B 东方纹样营销</td><td>全渠道</td><td>品牌声量 + 兼作国风新妆容方向爆发力测试</td><td>9-10月</td><td class="gold">蓄水/测试</td></tr>
+        <tr><td class="b">C 价格竞争力</td><td>抖音 + 全渠道</td><td>大促节点放价，撬动销量超额（先保生意额）</td><td>10-11月</td><td class="bad">攻坚</td></tr>
+        <tr><td class="b">D 短挂双线内容</td><td>达短 + 种草</td><td>国风方向（视测试）+ 水光妆容契合内容，跟进主流趋势</td><td>10-12月</td><td>放大</td></tr>
+        <tr><td class="b">E 达播恢复计划</td><td>达播</td><td>达人结构复盘、头部档期锁定、拆解589万高位目标</td><td>9月起</td><td class="bad">止跌</td></tr>
+        <tr><td class="b">F 二梯队切入</td><td>全渠道</td><td>修容棒+遮瑕协同放量，为主推产品加保险</td><td>11-12月</td><td class="good">保险</td></tr>
+      </table>
+      <div class="verdict">
+        <b>要点提示：</b>六条动作线不是并列六选一，而是<b>有先后、有主从的联动</b>：A+B 是前提（把兴趣做起来），C 才打得响（价格才有意义）；D+E 分别稳住达短与修复达播；F 是12月前的最后一道保险。动作 A→C 之间隔了一个蓄水期，<b>不能跳过蓄水直接放价</b>——这是与 8月"有价无兴趣"教训对应的关键修正。
+      </div>
+    </section>
+
+    <!-- 四、分渠道打法 -->
+    <section class="sec fade" id="s4">
+      <div class="sec-head"><span class="sec-no">第四部分</span><h2 class="sec-title">分渠道打法：一渠一策</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">每个渠道给出"现状 → 目标 → 动作 → 检查点"的完整链路。</p>
+
+      <div class="sub">
+        <div class="sub-title">渠道一 · 内容电商-抖音：主战场，须破历史峰值</div>
+        <div class="grid g2">
+          <div class="card"><h4><span class="tag tag-dy">抖音</span> 现状与目标</h4>
+            <div class="body">1-8月实际 8,906万 / 全年 1.44亿 / 需月均 <b>1,374万</b>；历史峰值 1,337万 → <b>每月都要破自己的纪录</b>。8月 915.6万已连续两月低于千万线。</div></div>
+          <div class="card pos"><h4>打法链路</h4>
+            <ul>
+              <li><b>9月</b>：明星进直播间，先把单月拉回千万线上方，验证兴趣修复</li>
+              <li><b>10-11月</b>：双11价格杠杆全量释放，冲 1,400万+ 超额</li>
+              <li><b>12月</b>：年终冲刺，守住已回水位，力保全年收口</li>
+            </ul></div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px;">检查点：9月单月须 ≥1,000万（回线）；双11当月须 ≥1,400万（超额）</div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">渠道二 · 达播：最大变量，先止跌再回升</div>
+        <div class="grid g2">
+          <div class="card warn"><h4><span class="tag tag-db">达播</span> 现状与目标</h4>
+            <div class="body">8月仅 139.6万（达成 25%、环比 -74%、年内最低），单月波动超300万。需月均 <b>643万</b>，而 6-8月均值仅 414万（缺口达 55%）；9月目标 589万为全年最高。</div></div>
+          <div class="card"><h4>打法链路</h4>
+            <ul>
+              <li><b>9月</b>：达人排期复盘——头部档期锁定、腰部达人补位、避开单点依赖</li>
+              <li><b>10-11月</b>：绑定大促专场与明星联动，冲击 600-700万/月</li>
+              <li><b>兜底</b>：若9月仍低于恢复线，触发资源向达短/自播转移的预案</li>
+            </ul></div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px;">检查点：9月 ≥400万（止跌）；10-11月 ≥600万（回升）</div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">渠道三 · 达短：压舱石，超额的第一来源</div>
+        <div class="grid g2">
+          <div class="card pos"><h4><span class="tag tag-ds">达短</span> 现状与目标</h4>
+            <div class="body">1-8月相对稳定，基准情景全年也仅缺 402万（-4%），是三渠道里最接近目标的。9-12月既定目标合计 3,100万，整体低于历史常态 → <b>超额空间相对最大</b>。</div></div>
+          <div class="card"><h4>打法链路</h4>
+            <ul>
+              <li><b>内容承接</b>：短挂跟进国风（视测试）+ 水光妆容契合内容，顺应大盘趋势放大</li>
+              <li><b>稳定放量</b>：保持月均 800万 基本盘，大促月冲 900万+</li>
+              <li><b>定位</b>：把达短做成 997万缺口的第一个超额来源</li>
+            </ul></div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px;">检查点：月均 ≥800万，大促月 ≥900万</div>
+      </div>
+    </section>
+
+    <!-- 五、营销-缺口映射 -->
+    <section class="sec fade" id="s5">
+      <div class="sec-head"><span class="sec-no">第五部分</span><h2 class="sec-title">营销动作 × 生意缺口映射</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">把策略层的营销抓手落回生意缺口，明确"每个动作补哪块缺口、在什么节点见效"。</p>
+      <table>
+        <tr><th style="width:18%">营销动作</th><th style="width:20%">对应的缺口</th><th style="width:34%">传导路径</th><th style="width:14%">见效节点</th><th style="width:14%">贡献性质</th></tr>
+        <tr><td class="b">明星进直播间</td><td>抖音千万线 + 达播恢复</td><td>明星热度 → 搜索兴趣回升 → 直播间转化与信任重建</td><td>9月</td><td class="gold">止跌</td></tr>
+        <tr><td class="b">东方纹样营销</td><td>品牌声量 + 测试</td><td>内容破圈 → 兴趣蓄水 → 大促前心智占位；兼测国风爆发力</td><td>9-10月</td><td class="gold">蓄水</td></tr>
+        <tr><td class="b">价格竞争力</td><td>997万超额主力</td><td>双11价格杠杆 → 高转化窗口 → 三渠道集中放量超额</td><td>10-11月</td><td class="bad">攻坚</td></tr>
+        <tr><td class="b">短挂双线内容</td><td>达短超额</td><td>国风/水光契合内容 → 挂车转化放大 → 达短超 800万基线</td><td>10-12月</td><td>放大</td></tr>
+        <tr><td class="b">二梯队产品</td><td>收官补量 + 保险</td><td>修容棒/遮瑕错位放量 → 承接主推不及预期的风险</td><td>11-12月</td><td class="good">保险</td></tr>
+      </table>
+      <div class="verdict blue">
+        <b>研判要点：</b>这张表的意义是<b>让每个营销动作都对应到具体的万元缺口</b>，执行时可以用数据验收（如"9月明星动作是否让抖音回到千万线"），而不是"做完动作看天意"。997万超额的目标拆解为：<b>双11价格攻坚承担大头（约600万+），达短超额约150万，达播回升约150万，二梯队收官补余量约100万</b>——具体数额可随月度复盘动态调整。
+      </div>
+    </section>
+
+    <!-- 六、逐月日历 -->
+    <section class="sec fade" id="s6">
+      <div class="sec-head"><span class="sec-no">第六部分</span><h2 class="sec-title">逐月作战日历</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">四个月的节奏落到月份上：当月目标 + 当月主战场 + 当月关键动作。</p>
+
+      <div class="ops">
+        <div class="op-item">
+          <div class="op-time">9月 · 既定目标 2,672万（抖音1,283 / 达播589 / 达短800）</div>
+          <div class="op-name">主题：止跌 + 蓄水</div>
+          <div class="op-desc">
+            ▸ 抖音拉回千万线上方（明星进直播间）<br>
+            ▸ 达播重启：头部档期锁定，9月目标全年最高 589万须重点盯防<br>
+            ▸ 东方纹样营销上线，同步测试国风新妆容方向爆发力<br>
+            <b>检查点：抖音≥1,000万、达播≥400万、达短≥800万</b>
+          </div>
+        </div>
+        <div class="op-item">
+          <div class="op-time">10月 · 既定目标 2,609万（抖音1,283 / 达播526 / 达短800）</div>
+          <div class="op-name">主题：大促预热 + 双线内容起量</div>
+          <div class="op-desc">
+            ▸ 短挂国风/水光双线内容铺量，达短冲 900万<br>
+            ▸ 价格策略定档、双11货盘与权益筹备<br>
+            ▸ 大促专场达人排期锁定<br>
+            <b>检查点：达短≥900万、双11作战方案定稿</b>
+          </div>
+        </div>
+        <div class="op-item">
+          <div class="op-time">11月 · 既定目标 2,491万（抖音1,195 / 达播496 / 达短800）</div>
+          <div class="op-name">主题：双11价格攻坚（超额主战场）</div>
+          <div class="op-desc">
+            ▸ 价格杠杆全量释放，抖音冲 1,400万+、达播冲 600-700万<br>
+            ▸ 二梯队（修容棒+遮瑕）开始切入测试<br>
+            ▸ 明星/内容在大促期形成声量叠加<br>
+            <b>检查点：本月完成全年最大超额（目标600万+超额）</b>
+          </div>
+        </div>
+        <div class="op-item">
+          <div class="op-time">12月 · 既定目标 2,496万（抖音1,283 / 达播513 / 达短700）</div>
+          <div class="op-name">主题：收官补位</div>
+          <div class="op-desc">
+            ▸ 年终冲刺 + 二梯队补量<br>
+            ▸ 对照 997万缺口清单逐项复盘，缺口项集中补<br>
+            ▸ 全年收口：力争达成率 100%（2.94亿）<br>
+            <b>检查点：缺口清单清零或最小化</b>
+          </div>
+        </div>
+      </div>
+      <div class="verdict">
+        <b>要点提示：</b>节奏设计遵循"<b>先稳后攻再收</b>"：9月把失守的阵地夺回来（抖音回线、达播止跌），10月完成弹药准备，11月集中放量把全年超额打出来，12月查漏补缺。若 9月检查点未达成，<b>应立刻把资源重心从"蓄水"切向"达短超额+二梯队保险"</b>，而不是拖延观望。
+      </div>
+    </section>
+
+    <!-- 七、风险与保底 -->
+    <section class="sec fade" id="s7">
+      <div class="sec-head"><span class="sec-no">第七部分</span><h2 class="sec-title">风险预案与保底机制</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">先想清楚最坏的情况：价格没扛住、达播再塌、测试无果——每一条都有对应动作。</p>
+      <div class="grid g2">
+        <div class="card warn"><h4>⚠ 风险一：价格杠杆未能扛住竞争压力</h4>
+          <div class="body">主推产品处不利竞争地位，若大促期间价格动作未达预期 → 生意大波动。<b>保底：二梯队（修容棒+遮瑕）在大促同步切入承接</b>，不以单一主推孤注一掷。</div></div>
+        <div class="card pos"><h4>✓ 应对：二梯队 = 后半年的保险丝</h4>
+          <div class="body">二梯队通过协调更多资源协同跟进，即使主推承压也能承接部分生意盘——<b>核心原则是"协同扩容"而非"内部争抢资源"</b>，11月前完成切入准备。</div></div>
+        <div class="card warn"><h4>⚠ 风险二：达播持续低迷（再塌方）</h4>
+          <div class="body">达播月间波动超300万，若9月未止跌（<400万），将直接威胁全年缺口。<b>保底：启动资源转移预案</b>——把原达播预算向达短超额与自播倾斜。</div></div>
+        <div class="card warn"><h4>⚠ 风险三：价格竞争副作用</h4>
+          <div class="body">放价可能带来品牌调性稀释与利润压缩。<b>应对：以新妆容矩阵（国风方向若测试有效）承接品牌价值感</b>，价格是手段而非目的，11月后启动价值回归动作。</div></div>
+        <div class="card warn"><h4>⚠ 风险四：国风方向测试无爆发力</h4>
+          <div class="body">若9-10月测试数据不支撑，则不强行铺国风内容，<b>回归"水光妆容契合内容+达短稳定放量"的保守路线</b>，用价格攻坚补足。</div></div>
+        <div class="card info"><h4>▶ 月度复盘机制</h4>
+          <div class="body">每月5日前对照"渠道检查点+缺口清单"复盘：达标则加大下月动作投入；未达标则按预案切换资源重心。<b>复盘只对缺口与数据，不对人与情绪</b>，保证执行中性可控。</div></div>
+      </div>
+      <div class="verdict red">
+        <b>风险提示：</b>整体部署遵循"<b>不单点押注</b>"——主推冲量、达短稳盘、达播设止损、二梯队做保险，四条腿并行，任何一条腿出问题都不至于全线崩盘。<b>缺口收口的底线不是"每个动作都成功"，而是"任何一个动作失败时都有替代项立刻顶上"。</b>
+      </div>
+    </section>
+
+    <!-- 八、待决事项 -->
+    <section class="sec fade" id="s8">
+      <div class="sec-head"><span class="sec-no">第八部分</span><h2 class="sec-title">需要领导明确的决策事项</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">以下事项建议在 9月内拍板，执行团队即可按既定方向推进。</p>
+      <table>
+        <tr><th style="width:6%">序号</th><th style="width:34%">决策事项</th><th style="width:60%">需要明确的点</th></tr>
+        <tr><td>1</td><td class="gold b">生意额 vs 利润（OP）取舍</td><td>若大促出现只能保一个的局面，优先保哪个？——直接决定价格杠杆可打多深</td></tr>
+        <tr><td>2</td><td class="gold b">是否立项国风新妆容方向测试</td><td>东方纹样营销是否按"方向测试"定位，预留短挂跟进可能</td></tr>
+        <tr><td>3</td><td class="gold b">达播重启投入上限</td><td>达人档期/专场预算确认；若9月未止跌，资源转移预案是否同步批准</td></tr>
+        <tr><td>4</td><td class="gold b">二梯队（修容棒+遮瑕）同步启动</td><td>若启动，11月切入的资源配比与主推产品的协同原则</td></tr>
+        <tr><td>5</td><td class="gold b">明星档期 + 东方纹样预算</td><td>两波营销投入的预算范围与优先级</td></tr>
+      </table>
+      <div class="verdict">
+        本方案的所有动作与缺口均基于 1-8月实际生意数据与市场观察推演，<b>具体力度、资源投入与优先级请领导结合整体经营目标裁定</b>。团队可在拍板后按"三步走执行链"细化到周排期。
+      </div>
+    </section>
+
+    <div class="footer">OOO 品牌 9-12月生意收官执行方案 · 结合缺口全景与市场竞争研判 · 供内部决策参考</div>
+  </div>
+</div>
+
+<script>
+const fades=document.querySelectorAll('.fade');
+const tocItems=document.querySelectorAll('.toc-item');
+const secs=document.querySelectorAll('.sec,.cover');
+function onScroll(){
+  const y=window.scrollY+160;let activeId='cover';
+  secs.forEach(s=>{if(s.offsetTop<=y)activeId=s.id});
+  tocItems.forEach(t=>t.classList.toggle('active',t.getAttribute('href')==='#'+activeId));
+  fades.forEach(f=>{if(f.getBoundingClientRect().top<window.innerHeight-50)f.classList.add('on')});
+}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+document.querySelectorAll('.toc-item').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})})});
+</script>
+</body>
+</html>
