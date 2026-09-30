@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BABI vs OUT-OF-OFFICE 修容类目达人挂车视频对比分析</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #faf9f6; color: #2c2c2c; line-height: 1.7; padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .header {
+    text-align: center; padding: 48px 32px 40px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2010 100%);
+    color: #f5e6c8; border-radius: 16px 16px 0 0;
+  }
+  .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+  .header .subtitle { font-size: 14px; color: #c8a96e; }
+  .header .meta { margin-top: 14px; font-size: 12px; color: #8a7a5a; }
+  .section {
+    background: #fff; border-radius: 12px; padding: 32px;
+    margin-bottom: 20px; border: 1px solid #e8e6e1;
+  }
+  .section-title {
+    font-size: 20px; font-weight: 700; margin-bottom: 8px;
+    padding-left: 12px; border-left: 4px solid #c8851e;
+  }
+  .section-desc { font-size: 14px; color: #666; margin-bottom: 20px; padding-left: 12px; }
+  .chart-wrap { position: relative; width: 100%; }
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 8px;
+  }
+  .kpi-card {
+    background: #fdf6e9; border-radius: 10px; padding: 20px;
+    text-align: center; border: 1px solid #f0d9a8;
+  }
+  .kpi-card .label { font-size: 12px; color: #666; margin-bottom: 6px; }
+  .kpi-card .value { font-size: 22px; font-weight: 700; color: #c8851e; }
+  .kpi-card .unit { font-size: 13px; color: #999; }
+  .kpi-card.ooo { background: #eef5f8; border-color: #b8d4e0; }
+  .kpi-card.ooo .value { color: #3a6b8a; }
+  .kpi-card.ooo .label { color: #666; }
+  .insight-box {
+    background: #fdf6e9; border-left: 4px solid #c8851e;
+    border-radius: 8px; padding: 16px 20px; margin-top: 16px;
+  }
+  .insight-box .title { font-weight: 700; color: #c8851e; margin-bottom: 6px; font-size: 14px; }
+  .insight-box .desc { font-size: 13px; color: #555; line-height: 1.7; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 16px; }
+  th { background: #f5f3ef; padding: 10px 12px; text-align: left; font-weight: 600; color: #555; border-bottom: 2px solid #e8e6e1; }
+  td { padding: 10px 12px; border-bottom: 1px solid #e8e6e1; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .babi-color { color: #d4533a; font-weight: 600; }
+  .ooo-color { color: #3a6b8a; font-weight: 600; }
+  .footer {
+    text-align: center; padding: 24px; font-size: 12px; color: #999;
+    background: #fff; border-radius: 0 0 12px 12px; border: 1px solid #e8e6e1; border-top: none;
+  }
+  .legend-dot {
+    display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 4px; vertical-align: middle;
+  }
+  .dist-box { margin-top: 20px; background: #faf8f4; border: 1px solid #ece8e1; border-radius: 10px; padding: 16px 20px; }
+  .dist-title { font-weight: 700; font-size: 14px; margin-bottom: 12px; color: #2c2c2c; }
+  .dist-table { margin-top: 0; }
+  .dist-table th, .dist-table td { padding: 8px 10px; }
+  .bar-cell { display: flex; flex-direction: column; gap: 4px; }
+  .bar-row { display: flex; align-items: center; gap: 8px; }
+  .bar { height: 10px; border-radius: 5px; min-width: 2px; }
+  .bar.babi { background: rgba(212,83,58,0.75); }
+  .bar.ooo { background: rgba(58,107,138,0.75); }
+  .bar-label { font-size: 11px; color: #888; width: 34px; flex-shrink: 0; }
+  .dist-note { font-size: 12px; color: #777; margin-top: 12px; line-height: 1.8; }
+  .summary-table th, .summary-table td { text-align: center; }
+  .summary-table td:first-child { text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>BABI vs OUT-OF-OFFICE 修容类目达人挂车视频对比分析</h1>
+    <div class="subtitle">数据周期：2026年1月1日 — 8月31日（共243天） | 数据来源：飞瓜导出</div>
+    <div class="meta">分析维度：日播放量趋势 / 月度百万播放视频数 | 品类：面部彩妆-阴影/修容</div>
+  </div>
+
+  <!-- KPI概览 -->
+  <div class="section">
+    <div class="section-title">核心指标对比</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="label">BABI 挂车视频数</div>
+        <div class="value">2,195<span class="unit">条</span></div>
+      </div>
+      <div class="kpi-card ooo">
+        <div class="label">OOO 挂车视频数</div>
+        <div class="value">9,117<span class="unit">条</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">BABI 合作达人数</div>
+        <div class="value">595<span class="unit">位</span></div>
+      </div>
+      <div class="kpi-card ooo">
+        <div class="label">OOO 合作达人数</div>
+        <div class="value">2,772<span class="unit">位</span></div>
+      </div>
+    </div>
+    <div class="kpi-grid" style="margin-top: 16px;">
+      <div class="kpi-card">
+        <div class="label">BABI 总播放量</div>
+        <div class="value">2.93<span class="unit">亿</span></div>
+      </div>
+      <div class="kpi-card ooo">
+        <div class="label">OOO 总播放量</div>
+        <div class="value">1.51<span class="unit">亿</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">BABI 百万播放视频</div>
+        <div class="value">59<span class="unit">条</span></div>
+      </div>
+      <div class="kpi-card ooo">
+        <div class="label">OOO 百万播放视频</div>
+        <div class="value">18<span class="unit">条</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 图表1：日维度播放量 -->
+  <div class="section">
+    <div class="section-title">一、日维度播放量对比趋势</div>
+    <div class="section-desc">
+      <span class="legend-dot" style="background:#d4533a;"></span><span class="babi-color">BABI</span> vs <span class="legend-dot" style="background:#3a6b8a;"></span><span class="ooo-color">OUT-OF-OFFICE</span> · 按发布日期汇总每日总播放量，含7日移动平均线（虚线）平滑趋势
+    </div>
+    <div class="chart-wrap" style="height:450px;">
+      <canvas id="chart-daily"></canvas>
+    </div>
+    <div class="insight-box">
+      <div class="title">趋势解读</div>
+      <div class="desc">
+        • <b>BABI日均播放量约121万</b>（2.93亿/243天），是OOO（约62万）的1.9倍，而OOO视频数量是BABI的4.2倍（9,117 vs 2,195条）——BABI以更少视频获得更高播放，单条效率优势明显<br>
+        • 两品牌均呈<b>脉冲式爆发</b>特征：单日可在头部达人发布时突破千万级，日常回落至数十万<br>
+        • BABI在<b>2月中旬、4月底-5月中旬、6月底-7月初</b>多次冲高，8月维持高位（单月播放4,167万，仅次于7月的5,837万）；OOO峰值集中在<b>1月中旬、5月上旬、7月上旬</b>，8月大幅走弱（单月仅391万，近半年最低）<br>
+        • 从7日移动平均线看，BABI 5月后中枢持续抬升；OOO 6月起明显走低、8月滑入低谷，两品牌差距在8月进一步拉大
+      </div>
+    </div>
+  </div>
+
+  <!-- 图表2：月度百万播放视频数 -->
+  <div class="section">
+    <div class="section-title">二、月度百万播放视频数对比趋势</div>
+    <div class="section-desc">
+      按月统计单条视频播放量超过100万的视频条数（不去重），衡量品牌合作内容的<b>头部爆款产出能力</b>
+    </div>
+    <div class="chart-wrap" style="height:400px;">
+      <canvas id="chart-monthly"></canvas>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>月份</th>
+          <th class="num">BABI 百万播放视频数</th>
+          <th class="num">OOO 百万播放视频数</th>
+          <th>差异</th>
+          <th class="num">BABI 达人平均粉丝</th>
+          <th class="num">OOO 达人平均粉丝</th>
+        </tr>
+      </thead>
+      <tbody id="monthly-table"></tbody>
+    </table>
+    <div class="dist-box">
+      <div class="dist-title">达人粉丝体量分布对比 <span style="font-size:12px;color:#999;font-weight:400;">（百万播放视频对应达人，2026年1-8月合计）</span></div>
+      <table class="dist-table">
+        <thead>
+          <tr>
+            <th>粉丝档位</th>
+            <th class="num">BABI 条数</th>
+            <th class="num">BABI 占比</th>
+            <th style="width:28%;">分布对比（BABI ▬ OOO）</th>
+            <th class="num">OOO 条数</th>
+            <th class="num">OOO 占比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>100万+</b>（头部）</td>
+            <td class="num babi-color">6</td>
+            <td class="num">10%</td>
+            <td><div class="bar-cell"><div class="bar-row"><span class="bar-label">BABI</span><div class="bar babi" style="width:10%;"></div></div><div class="bar-row"><span class="bar-label">OOO</span><div class="bar ooo" style="width:22%;"></div></div></div></td>
+            <td class="num ooo-color">4</td>
+            <td class="num">22%</td>
+          </tr>
+          <tr>
+            <td><b>50-100万</b>（中头部）</td>
+            <td class="num babi-color">14</td>
+            <td class="num">24%</td>
+            <td><div class="bar-cell"><div class="bar-row"><span class="bar-label">BABI</span><div class="bar babi" style="width:24%;"></div></div><div class="bar-row"><span class="bar-label">OOO</span><div class="bar ooo" style="width:28%;"></div></div></div></td>
+            <td class="num ooo-color">5</td>
+            <td class="num">28%</td>
+          </tr>
+          <tr>
+            <td><b>10-50万</b>（腰部）</td>
+            <td class="num babi-color">24</td>
+            <td class="num">41%</td>
+            <td><div class="bar-cell"><div class="bar-row"><span class="bar-label">BABI</span><div class="bar babi" style="width:41%;"></div></div><div class="bar-row"><span class="bar-label">OOO</span><div class="bar ooo" style="width:17%;"></div></div></div></td>
+            <td class="num ooo-color">3</td>
+            <td class="num">17%</td>
+          </tr>
+          <tr>
+            <td><b>10万以下</b>（尾部）</td>
+            <td class="num babi-color">15</td>
+            <td class="num">25%</td>
+            <td><div class="bar-cell"><div class="bar-row"><span class="bar-label">BABI</span><div class="bar babi" style="width:25%;"></div></div><div class="bar-row"><span class="bar-label">OOO</span><div class="bar ooo" style="width:33%;"></div></div></div></td>
+            <td class="num ooo-color">6</td>
+            <td class="num">33%</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="dist-note">
+        解读：<br>
+        • <b>结构差异显著</b>：BABI 爆款产出高度依赖<b>可规模复制的腰部达人</b>（10-50万档占41%，24/59条），结构稳定可持续；OOO 爆款更吃<b>头部/中头部大V</b>（50万+合计50%，9/18条），但大V档期不可控，一旦不发力即断档<br>
+        • 该品类"内容质量比粉丝量级更重要"依然成立：BABI 10万以下尾部也贡献 25%（15/59条），中小达人同样能产出百万播放视频<br>
+        • <b>按月看</b>：BABI 8月新增9条爆款中 6条出自10-50万腰部（含 32万-84万粉达人），档位健康；OOO 6月与8月两度零爆款，其3月（约85万粉均）、5月（约142万粉均）、7月（约135万粉均）全靠个别头部达人撑起，头部空窗期即断供
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="title">趋势解读</div>
+      <div class="desc">
+        • BABI月度百万播放视频从1月<b>1条</b>扩张至7月<b>16条</b>（历史峰值），8月<b>9条</b>仍居高位——全年持续扩大趋势确立<br>
+        • OOO 1月<b>5条</b>开局最强、3月<b>5条</b>次高，此后在0-4条间反复，<b>6月与8月两度归零</b>，缺乏持续爆发力<br>
+        • 3月是两品牌最接近的月份（BABI 7 vs OOO 5），此后差距持续拉大，8月（9 vs 0）创最大月差<br>
+        • <b>关键转折</b>：1月OOO领先（5 vs 1），2月BABI反超（6 vs 1）并保持领先至今——BABI爆款产出在扩张，OOO在收缩<br>
+        • <b>达人量级</b>：BABI百万播放达人平均粉丝稳定在 11-58万（8月58万，中头部带动回升），爆款产出不依赖大V；OOO波动剧烈（3月85万、5月142万、7月135万靠个别头部拉高，4月仅6千，6月/8月断档），爆款质量依赖单点、稳定性差
+      </div>
+    </div>
+  </div>
+
+  <!-- 对比总结 -->
+  <div class="section">
+    <div class="section-title">三、对比总结</div>
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>维度</th>
+          <th class="babi-color">BABI</th>
+          <th class="ooo-color">OUT-OF-OFFICE</th>
+          <th>对比结论</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>挂车视频数</td>
+          <td class="num">2,195条</td>
+          <td class="num">9,117条</td>
+          <td>OOO视频量是BABI的<b>4.2倍</b>，走量策略</td>
+        </tr>
+        <tr>
+          <td>合作达人数</td>
+          <td class="num">595位</td>
+          <td class="num">2,772位</td>
+          <td>OOO达人数是BABI的<b>4.7倍</b>，覆盖面更广</td>
+        </tr>
+        <tr>
+          <td>总播放量</td>
+          <td class="num">2.93亿</td>
+          <td class="num">1.51亿</td>
+          <td>BABI以更少视频获得<b>1.9倍</b>播放量（8月差距拉大）</td>
+        </tr>
+        <tr>
+          <td>单条均播放</td>
+          <td class="num">13.4万</td>
+          <td class="num">1.7万</td>
+          <td>BABI单条效率是OOO的<b>8.1倍</b></td>
+        </tr>
+        <tr>
+          <td>百万播放视频</td>
+          <td class="num">59条</td>
+          <td class="num">18条</td>
+          <td>BABI头部内容产出是OOO的<b>3.3倍</b></td>
+        </tr>
+        <tr>
+          <td>百万视频产出率</td>
+          <td class="num">2.7%</td>
+          <td class="num">0.2%</td>
+          <td>BABI的百万视频产出率是OOO的<b>约14倍</b></td>
+        </tr>
+        <tr>
+          <td>趋势方向</td>
+          <td class="babi-color">向上扩张</td>
+          <td class="ooo-color">波动下行</td>
+          <td>BABI爆款产出在扩大，OOO在收缩</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight-box" style="margin-top: 20px;">
+      <div class="title">核心结论</div>
+      <div class="desc">
+        BABI采取<b>"精选达人+高单条效率"</b>策略：视频数与达人数远少于OOO，但总播放量是OOO的1.9倍、单条均播放高出8.1倍、百万视频产出率是OOO的约14倍。月度趋势显示BABI头部爆款持续扩张（1月1条 → 7月16条峰值，8月9条维持高位），8月单月671条新视频仍产出9条百万爆款，"腰部规模化+内容质量"路径在放量期依然有效。<br><br>
+        OOO采取<b>"广撒网+走量"</b>策略：达人覆盖面广（2,772位），但单条效率低（均播1.7万），百万视频稀少且更依赖头部大V——8月以1,657条视频仅获391万播放、百万爆款<b>归零</b>，走量策略在流量收缩期完全失效。建议OOO收缩达人数量、聚焦可复制的腰部+中头部达人，提升单条内容质量与选题效率，而非继续扩量。
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    BABI vs OUT-OF-OFFICE 修容类目达人挂车视频对比分析 | 数据源：飞瓜导出 | 数据周期：2026年1月-8月
+  </div>
+
+</div>
+
+<script>
+Chart.defaults.font.family = "'PingFang SC', 'Microsoft YaHei', sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.color = '#666';
+
+const fmtWan = (v) => {
+  if (v >= 100000000) return (v / 100000000).toFixed(2) + '亿';
+  if (v >= 10000) return (v / 10000).toFixed(1) + '万';
+  return v.toLocaleString();
+};
+
+// 数据
+const allDates = ["2026-01-01","2026-01-02","2026-01-03","2026-01-04","2026-01-05","2026-01-06","2026-01-07","2026-01-08","2026-01-09","2026-01-10","2026-01-11","2026-01-12","2026-01-13","2026-01-14","2026-01-15","2026-01-16","2026-01-17","2026-01-18","2026-01-19","2026-01-20","2026-01-21","2026-01-22","2026-01-23","2026-01-24","2026-01-25","2026-01-26","2026-01-27","2026-01-28","2026-01-29","2026-01-30","2026-01-31","2026-02-01","2026-02-02","2026-02-03","2026-02-04","2026-02-05","2026-02-06","2026-02-07","2026-02-08","2026-02-09","2026-02-10","2026-02-11","2026-02-12","2026-02-13","2026-02-14","2026-02-15","2026-02-16","2026-02-17","2026-02-18","2026-02-19","2026-02-20","2026-02-21","2026-02-22","2026-02-23","2026-02-24","2026-02-25","2026-02-26","2026-02-27","2026-02-28","2026-03-01","2026-03-02","2026-03-03","2026-03-04","2026-03-05","2026-03-06","2026-03-07","2026-03-08","2026-03-09","2026-03-10","2026-03-11","2026-03-12","2026-03-13","2026-03-14","2026-03-15","2026-03-16","2026-03-17","2026-03-18","2026-03-19","2026-03-20","2026-03-21","2026-03-22","2026-03-23","2026-03-24","2026-03-25","2026-03-26","2026-03-27","2026-03-28","2026-03-29","2026-03-30","2026-03-31","2026-04-01","2026-04-02","2026-04-03","2026-04-04","2026-04-05","2026-04-06","2026-04-07","2026-04-08","2026-04-09","2026-04-10","2026-04-11","2026-04-12","2026-04-13","2026-04-14","2026-04-15","2026-04-16","2026-04-17","2026-04-18","2026-04-19","2026-04-20","2026-04-21","2026-04-22","2026-04-23","2026-04-24","2026-04-25","2026-04-26","2026-04-27","2026-04-28","2026-04-29","2026-04-30","2026-05-01","2026-05-02","2026-05-03","2026-05-04","2026-05-05","2026-05-06","2026-05-07","2026-05-08","2026-05-09","2026-05-10","2026-05-11","2026-05-12","2026-05-13","2026-05-14","2026-05-15","2026-05-16","2026-05-17","2026-05-18","2026-05-19","2026-05-20","2026-05-21","2026-05-22","2026-05-23","2026-05-24","2026-05-25","2026-05-26","2026-05-27","2026-05-28","2026-05-29","2026-05-30","2026-05-31","2026-06-01","2026-06-02","2026-06-03","2026-06-04","2026-06-05","2026-06-06","2026-06-07","2026-06-08","2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-13","2026-06-14","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-19","2026-06-20","2026-06-21","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-27","2026-06-28","2026-06-29","2026-06-30","2026-07-01","2026-07-02","2026-07-03","2026-07-04","2026-07-05","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-11","2026-07-12","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-18","2026-07-19","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-25","2026-07-26","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-01","2026-08-02","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-08","2026-08-09","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-15","2026-08-16","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-22","2026-08-23","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-29","2026-08-30","2026-08-31"];
+
+const babiDaily = [80204.0,46689.0,1506.0,4494.0,3139.0,6770.0,2288.0,42364.0,14388.0,359612.0,0,9283.0,277281.0,12118250.0,56090.0,64068.0,1639.0,7449.0,27036.0,14014.0,3083.0,41093.0,19334.0,796.0,7567.0,14093.0,135409.0,2933.0,163583.0,82592.0,11804.0,92620.0,19835.0,10856.0,6100.0,224601.0,69667.0,2231.0,2977.0,1331801.0,418635.0,2216.0,381162.0,8224101.0,6498050.0,8597.0,779.0,1176.0,4377.0,18303.0,5710.0,2744.0,93.0,2003.0,262.0,2673977.0,9213.0,5016975.0,3837171.0,3146.0,9443.0,6991.0,119551.0,1356430.0,25894.0,725.0,55.0,340900.0,153862.0,1802542.0,42555.0,241638.0,338286.0,4705.0,3369.0,374523.0,4166978.0,3367698.0,3500822.0,8645.0,1204.0,460.0,3200.0,716092.0,4051.0,8344925.0,1539886.0,2134.0,12191.0,337950.0,2010.0,171221.0,354.0,54873.0,231.0,42477.0,8103.0,517458.0,68231.0,615044.0,13542.0,4213.0,132.0,143462.0,909527.0,3316800.0,4895911.0,974604.0,2858.0,9235.0,523147.0,556060.0,1740.0,6489589.0,657568.0,195992.0,308037.0,2009234.0,1650462.0,15905860.0,59050.0,2949.0,249283.0,1552.0,243.0,958.0,93526.0,298.0,111239.0,21095101.0,2819.0,10718840.0,634084.0,23062.0,10710.0,16919.0,1224.0,6500.0,108990.0,6509706.0,330928.0,8166184.0,216.0,534490.0,86313.0,279951.0,584233.0,87942.0,24212.0,2404478.0,231.0,59421.0,2614.0,46101.0,6200093.0,3487350.0,141.0,206.0,2250728.0,1291.0,1255362.0,138283.0,695079.0,684492.0,239358.0,70.0,1372053.0,304047.0,77.0,539102.0,132528.0,252.0,1609.0,22605.0,1112425.0,97460.0,238739.0,12712349.0,7245.0,168664.0,97812.0,8294576.0,275914.0,5027942.0,628483.0,4399992.0,267344.0,0,1120308.0,721423.0,27133.0,2789503.0,1328513.0,160208.0,357534.0,37240.0,10463108.0,7031924.0,42124.0,49039.0,128140.0,2910360.0,5577167.0,227876.0,2069648.0,361930.0,393386.0,80379.0,2500478.0,764998.0,163885.0,168777.0,1751383.0,754502.0,273464.0,1863249.0,943697.0,207427.0,7805254.0,1242529.0,164934.0,7931.0,592735.0,594588.0,1244937.0,196279.0,3597838.0,1138362.0,451117.0,124242.0,1427195.0,246019.0,494407.0,2605353.0,117914.0,66422.0,300623.0,756375.0,11687002.0,194949.0,788972.0,3735.0,23635.0];
+
+const oooDaily = [4104284.0,493812.0,12773.0,39246.0,146429.0,4906949.0,259305.0,80852.0,254183.0,425854.0,4832.0,224465.0,88792.0,16010127.0,352023.0,530393.0,768587.0,186773.0,2609080.0,15163.0,736681.0,669066.0,314214.0,75234.0,11901.0,148297.0,1470148.0,435444.0,860012.0,689304.0,366299.0,4449.0,1106424.0,325242.0,190106.0,373606.0,677861.0,144539.0,371764.0,495956.0,1121993.0,88977.0,481101.0,999498.0,54511.0,15629.0,129178.0,165662.0,75045.0,18276.0,3004481.0,50776.0,30087.0,220575.0,88064.0,791200.0,54394.0,166341.0,483111.0,52262.0,252828.0,104979.0,4657993.0,173972.0,518734.0,35404.0,77417.0,715908.0,1568014.0,2066577.0,474238.0,227428.0,18851.0,711404.0,417116.0,658295.0,253954.0,287445.0,125971.0,27437.0,90979.0,1957938.0,194631.0,976092.0,486165.0,187867.0,43392.0,244258.0,3083521.0,859382.0,608767.0,308681.0,45531.0,287562.0,4339.0,593648.0,83366.0,201249.0,414543.0,131897.0,389970.0,478259.0,353515.0,1333705.0,939983.0,152356.0,78300.0,41437.0,25246.0,271195.0,279170.0,291829.0,449728.0,579842.0,771727.0,231910.0,712040.0,1014899.0,171633.0,5200816.0,28024.0,62581.0,13124.0,19764.0,119250.0,3337703.0,338505.0,88173.0,10301182.0,1201199.0,228524.0,27379.0,41932.0,44446.0,83697.0,185234.0,69258.0,60572.0,78622.0,750991.0,68660.0,46681.0,79311.0,75135.0,2704760.0,77179.0,105649.0,312219.0,175599.0,5295.0,8383.0,158385.0,62782.0,487667.0,684573.0,34506.0,74259.0,5207.0,116216.0,128210.0,523254.0,122752.0,55115.0,159893.0,10263.0,48800.0,31984.0,81943.0,92222.0,97172.0,20249.0,180680.0,649657.0,124580.0,165959.0,359259.0,319973.0,69862.0,167891.0,103427.0,230383.0,31106.0,321949.0,521783.0,62551.0,239893.0,25164620.0,198320.0,491711.0,1262548.0,192115.0,102484.0,15285.0,224238.0,608352.0,1216162.0,51682.0,65000.0,262583.0,90685.0,135352.0,161789.0,488932.0,89259.0,400554.0,121570.0,92717.0,205736.0,214699.0,98687.0,60170.0,343455.0,16579.0,262062.0,369553.0,229364.0,177012.0,198286.0,211251.0,32212.0,19567.0,108638.0,43856.0,267907.0,78794.0,200381.0,14714.0,44572.0,138283.0,138483.0,136128.0,512805.0,86919.0,5041.0,26711.0,88148.0,74067.0,43644.0,242587.0,63878.0,20433.0,25425.0,31396.0];
+
+const babiDailyMA7 = [80204,63446,42800,33223,27206,23800,20727,15321,10707,61865,61223,62101,100745,1831597,1833558,1840655,1789516,1790580,1793116,1755507,24768,22626,16235,16115,16132,14283,31625,31604,49102,58139,59712,71862,72682,54889,55341,64058,62212,60844,48038,235462,293716,293161,315527,1480446,2408420,2409223,2219077,2159440,2159749,2107912,933856,5955,4740,4915,4785,386156,384857,1100752,1648528,1648964,1650027,1650988,1286070,1478530,765518,217454,217013,264364,285345,525773,338076,368897,417120,417784,369565,401088,738865,1213885,1679483,1632391,1631891,1631476,1578430,1085446,604925,1296940,1515688,1515821,1517497,1565318,1463307,1487188,295107,82962,82690,87017,39896,113531,98818,186631,180727,181295,175246,194583,250593,714674,1326227,1463521,1463328,1464628,1518869,1468374,994794,1222462,1177171,1204762,1247448,1459746,1616089,3888106,2969458,2875941,2883554,2839770,2552771,2317128,58223,49830,65300,3043274,3043455,4574683,4665130,4655063,4656551,4643076,1629665,1630191,114498,953873,997854,2162922,2160535,2236716,2248118,2272541,1426045,1391333,228194,571660,495337,491495,451876,375000,1248164,1742898,1399422,1399418,1712462,1712273,1885024,1019052,620156,717920,752085,430562,626385,490483,470739,448457,369605,335447,335667,142889,258371,272283,229374,2026491,2027490,2051355,2062099,3088121,3113614,3797786,2071519,2699055,2713152,2699179,1674283,1737927,1023526,1332243,893461,878155,929232,774508,2166177,3166861,2774379,2591597,2587016,2951705,3743123,2280947,1572051,1617737,1666930,1660107,1601552,914099,904958,633405,831898,883486,911070,820037,845565,851786,1942711,1870017,1785793,1747860,1566358,1516485,1664701,577705,914177,1053239,1116551,1049623,1168567,1025865,1068454,926671,780892,725936,751133,655302,2289728,2246948,1987465,1971154,1965042];
+
+const oooDailyMA7 = [4104284,2299048,1536956,1162529,959309,1617249,1423257,848481,814248,873260,868343,879491,191183,2441301,2480039,2519498,2568460,2594451,2935111,2924592,742671,787963,757081,658030,633048,281508,489363,446329,473607,527191,568772,567708,704583,541025,505977,436490,434855,403175,455649,368439,482261,467814,483170,529118,516257,465381,412984,276365,274375,208257,494683,494150,496215,509272,498186,600494,605654,200205,261967,265135,269743,272159,824558,841641,891983,828025,831618,897772,1106777,736575,779470,737855,735490,826060,783375,653416,394469,367785,353291,354517,265885,486003,419765,522928,551316,560158,562438,584335,745132,840097,787622,762267,741933,776815,742540,386844,275985,217768,232891,245229,259859,327562,293257,471877,577410,539955,532298,482508,417792,406032,255384,162790,205272,276921,381248,410772,473749,578854,561683,1240410,1161578,1060272,1029017,930120,802170,1254466,559850,568443,2031100,2200825,2230648,2217524,1746699,1704691,1704051,258916,97210,73217,80537,181831,185291,180003,164871,165710,543451,543245,451054,485848,504265,493691,484155,120387,118330,172904,226098,205942,215794,215340,209316,218663,223746,143486,146430,158664,159386,149755,136009,72964,68603,74611,54662,79007,164844,178072,190074,228222,260051,267139,265312,187279,202393,183129,177799,206629,205584,215870,3796041,3791460,3857261,3991632,3944537,3950242,3918155,355243,413819,517312,344331,326172,349043,359815,347117,283322,179432,184800,232736,212592,212882,222937,230495,174746,170590,162433,147435,171627,195029,197124,208314,228044,209158,211391,176749,139476,112975,125960,108889,107336,104837,108409,112644,126162,107336,169338,153129,151747,149196,142034,132831,119619,81017,77725,79924,79740,71633];
+
+const monthLabels = ["1月","2月","3月","4月","5月","6月","7月","8月"];
+const babiMonthly = [1,6,7,7,5,8,16,9];
+const oooMonthly = [5,1,5,1,4,0,2,0];
+
+// 百万播放视频数（按月）
+const babiMillionVideosMonthly = [1,6,7,7,5,8,16,9];
+const oooMillionVideosMonthly = [5,1,5,1,4,0,2,0];
+
+// 百万播放达人平均粉丝数（按月，该月百万视频对应达人的粉丝均值）
+const babiFansMonthly = [1625824, 556320, 106587, 530930, 455214, 110024, 434688, 577683];
+const oooFansMonthly = [460084, 216569, 849702, 6159, 1416062, 0, 1347133, 0];
+
+// ============================================================
+// 图表1：日维度播放量
+// ============================================================
+new Chart(document.getElementById('chart-daily'), {
+  type: 'line',
+  data: {
+    labels: allDates,
+    datasets: [
+      {
+        label: 'BABI 播放量',
+        data: babiDaily,
+        borderColor: 'rgba(212,83,58,0.25)',
+        backgroundColor: 'rgba(212,83,58,0.03)',
+        borderWidth: 1,
+        pointRadius: 0,
+        fill: false,
+        tension: 0.3,
+        order: 3
+      },
+      {
+        label: 'BABI 7日均值',
+        data: babiDailyMA7,
+        borderColor: '#d4533a',
+        backgroundColor: 'rgba(212,83,58,0.08)',
+        borderWidth: 2.5,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        fill: false,
+        tension: 0.35,
+        order: 1
+      },
+      {
+        label: 'OOO 播放量',
+        data: oooDaily,
+        borderColor: 'rgba(58,107,138,0.25)',
+        backgroundColor: 'rgba(58,107,138,0.03)',
+        borderWidth: 1,
+        pointRadius: 0,
+        fill: false,
+        tension: 0.3,
+        order: 4
+      },
+      {
+        label: 'OOO 7日均值',
+        data: oooDailyMA7,
+        borderColor: '#3a6b8a',
+        backgroundColor: 'rgba(58,107,138,0.08)',
+        borderWidth: 2.5,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        fill: false,
+        tension: 0.35,
+        order: 2
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { font: { size: 11 }, usePointStyle: true, filter: (item) => !item.text.includes('播放量') }
+      },
+      tooltip: {
+        callbacks: {
+          title: (items) => items[0].label,
+          label: (ctx) => ctx.dataset.label + ': ' + fmtWan(ctx.parsed.y)
+        }
+      }
+    },
+    scales: {
+      y: {
+        ticks: { callback: (v) => fmtWan(v) },
+        grid: { color: '#f0ede8' }
+      },
+      x: {
+        grid: { display: false },
+        ticks: {
+          autoSkip: false,
+          maxRotation: 45,
+          font: { size: 10 },
+          callback: function(val, index) {
+            const label = this.getLabelForValue(val);
+            // 每隔7天显示一次（MM-DD），首尾各强制显示一次（autoSkip已关闭，密度由本回调完全控制）
+            if (index % 7 === 0 || index === 0 || index === 242) {
+              return label.slice(5);  // 只显示 MM-DD
+            }
+            return '';
+          }
+        }
+      }
+    }
+  }
+});
+
+// ============================================================
+// 图表2：月度百万播放视频数
+// ============================================================
+new Chart(document.getElementById('chart-monthly'), {
+  type: 'line',
+  data: {
+    labels: monthLabels,
+    datasets: [
+      {
+        label: 'BABI',
+        data: babiMonthly,
+        borderColor: '#d4533a',
+        backgroundColor: 'rgba(212,83,58,0.1)',
+        borderWidth: 3,
+        pointRadius: 6,
+        pointBackgroundColor: '#d4533a',
+        pointHoverRadius: 9,
+        fill: true,
+        tension: 0.35
+      },
+      {
+        label: 'OUT-OF-OFFICE',
+        data: oooMonthly,
+        borderColor: '#3a6b8a',
+        backgroundColor: 'rgba(58,107,138,0.1)',
+        borderWidth: 3,
+        pointRadius: 6,
+        pointBackgroundColor: '#3a6b8a',
+        pointHoverRadius: 9,
+        fill: true,
+        tension: 0.35
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 12 }, usePointStyle: true } },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => ctx.dataset.label + ': ' + ctx.parsed.y + '条视频'
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { callback: (v) => v + '条', stepSize: 2 },
+        grid: { color: '#f0ede8' },
+        title: { display: true, text: '百万播放视频条数', font: { size: 12 } }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// 月度表格
+const tbody = document.getElementById('monthly-table');
+for (let i = 0; i < monthLabels.length; i++) {
+  const diff = babiMonthly[i] - oooMonthly[i];
+  const diffText = diff > 0 ? `<span class="babi-color">BABI +${diff}</span>` : diff < 0 ? `<span class="ooo-color">OOO +${-diff}</span>` : '持平';
+  const fmtFans = (v) => v >= 10000 ? (v/10000).toFixed(1).replace(/\.0$/, '') + '万' : (v > 0 ? v.toLocaleString() : '-');
+  tbody.innerHTML += `<tr>
+    <td><b>${monthLabels[i]}</b></td>
+    <td class="num babi-color">${babiMonthly[i]}</td>
+    <td class="num ooo-color">${oooMonthly[i]}</td>
+    <td>${diffText}</td>
+    <td class="num">${fmtFans(babiFansMonthly[i])}</td>
+    <td class="num">${fmtFans(oooFansMonthly[i])}</td>
+  </tr>`;
+}
+</script>
+</body>
+</html>
