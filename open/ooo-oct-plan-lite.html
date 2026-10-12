@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OOO 10月策略建议 · 精简版</title>
+<style>
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background:#f4f5f7; color:#1f2937; font-size:14px; line-height:1.7;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:20px 16px 60px; }
+
+  /* 顶部条 */
+  .bar {
+    background:linear-gradient(135deg,#1a1a1a,#2d2010); color:#f5e6c8;
+    border-radius:12px; padding:22px 24px; margin-bottom:16px; position:relative; overflow:hidden;
+  }
+  .bar .badge {
+    display:inline-block; font-size:10px; letter-spacing:2px; color:#c8a96e;
+    border:1px solid #c8a96e; border-radius:3px; padding:1px 8px; margin-bottom:10px;
+  }
+  .bar h1 { font-size:22px; font-weight:800; line-height:1.35; }
+  .bar h1 em { color:#e0b85c; font-style:normal; }
+  .bar .meta { margin-top:10px; font-size:11px; color:#8a7a5a; display:flex; gap:14px; flex-wrap:wrap; }
+
+  /* 一句话结论 */
+  .oneline {
+    background:#fff; border:1px solid #e6e2d8; border-left:4px solid #b8860b;
+    border-radius:8px; padding:12px 16px; font-size:13px; color:#4a4030;
+    margin-bottom:14px; line-height:1.8;
+  }
+  .oneline b { color:#1f2937; }
+  .oneline .tag { color:#b8860b; font-weight:800; }
+
+  /* 区块 */
+  .sec { background:#fff; border:1px solid #e6e8ec; border-radius:10px; padding:16px 18px; margin-bottom:14px; }
+  .sec-h { font-size:14px; font-weight:800; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+  .sec-h .n {
+    background:#b8860b; color:#fff; font-size:11px; border-radius:4px;
+    padding:1px 7px; letter-spacing:1px; flex-shrink:0;
+  }
+  .sec-h::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,#e3d5b5,transparent); }
+
+  /* 竞品行 */
+  .rows { display:flex; flex-direction:column; gap:8px; }
+  .row {
+    display:flex; align-items:center; gap:10px; padding:9px 12px;
+    background:#faf9f6; border:1px solid #efece4; border-radius:7px; font-size:12.5px;
+  }
+  .row .b { font-weight:800; font-size:13px; min-width:52px; }
+  .row .b.b1{color:#2f5d9e} .row .b.b2{color:#b04a6a} .row .b.b3{color:#7a50b4} .row .b.b4{color:#a67c00}
+  .row .d { color:#5b6a80; flex:1; }
+
+  /* 数据块 */
+  .datas { display:flex; align-items:center; justify-content:space-around; gap:10px; padding:6px 0; }
+  .data { text-align:center; }
+  .data .v { font-size:26px; font-weight:800; }
+  .data .l { font-size:10.5px; color:#93a1b4; }
+  .arrow { color:#b8860b; font-size:20px; }
+  .red{color:#c0392b} .gold{color:#b8860b} .dim{color:#5b6a80} .green{color:#2e7d4f}
+
+  /* 发现项 */
+  .finds { display:flex; flex-direction:column; gap:8px; }
+  .find { border-radius:7px; padding:10px 12px; font-size:12.5px; }
+  .find .h { font-weight:800; margin-bottom:3px; }
+  .find.a { background:#fdf3ef; border:1px solid #f3d6ca; } .find.a .h{color:#c0392b}
+  .find.b { background:#f1f6ff; border:1px solid #d3e0f5; } .find.b .h{color:#2f5d9e}
+  .find.c { background:#fdf7e6; border:1px solid #eeddb0; } .find.c .h{color:#a67c00}
+  .find p{color:#4a5568;}
+
+  /* 阶段 */
+  .stages { display:flex; flex-direction:column; gap:8px; }
+  .stage { display:flex; gap:10px; align-items:flex-start; padding:10px 12px; border-radius:7px; background:#faf9f6; border:1px solid #efece4; }
+  .stage .no {
+    width:24px; height:24px; border-radius:50%; border:1.5px solid #b8860b; color:#b8860b;
+    font-weight:800; font-size:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;
+  }
+  .stage .t { font-weight:800; font-size:13px; margin-bottom:1px; }
+  .stage .d { font-size:12px; color:#5b6a80; }
+
+  /* 表格 */
+  table { width:100%; border-collapse:collapse; font-size:12px; margin-top:2px; }
+  th,td { border:1px solid #e6e8ec; padding:7px 9px; text-align:center; }
+  th { background:#f6f4ef; color:#6b5f4a; font-weight:700; }
+  td { color:#4a5568; }
+  td.bad{color:#c0392b;font-weight:700} td.good{color:#2e7d4f;font-weight:700} td.gold{color:#b8860b;font-weight:700}
+
+  /* 风险 */
+  .risk { display:flex; gap:10px; }
+  .risk .box { flex:1; border-radius:7px; padding:10px 12px; font-size:11.5px; }
+  .risk .box h5 { font-size:12px; margin-bottom:4px; }
+  .risk .w { background:#fdf3ef; border:1px solid #f3d6ca; } .risk .w h5{color:#c0392b}
+  .risk .g { background:#eef7f0; border:1px solid #cde5d3; } .risk .g h5{color:#2e7d4f}
+  .risk p{color:#4a5568;}
+
+  /* 决策清单 */
+  .decide { list-style:none; }
+  .decide li {
+    display:flex; gap:8px; align-items:flex-start; padding:7px 0; border-bottom:1px dashed #e6e8ec;
+    font-size:12.5px;
+  }
+  .decide li:last-child{border-bottom:none}
+  .decide .q { color:#b8860b; font-weight:800; flex-shrink:0; }
+  .decide span { color:#4a5568; }
+
+  /* 尾条 */
+  .tail {
+    background:linear-gradient(135deg,#1a1a1a,#2d2010); color:#f5e6c8;
+    border-radius:10px; padding:14px 18px; font-size:12.5px; line-height:1.8;
+  }
+  .tail b{color:#e0b85c}
+  .foot { text-align:center; font-size:10.5px; color:#9aa3ad; margin-top:16px; letter-spacing:1px; }
+
+  .ttl { font-size:12.5px; color:#5b6a80; font-weight:700; margin:12px 0 4px; }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="bar">
+    <div class="badge">精 简 版</div>
+    <h1>OOO · 10月策略建议<br><em>Q4 保利润 · 内容聚焦 × 货盘协同</em></h1>
+    <div class="meta">
+      <span>口径：内容电商-抖音</span>
+      <span>周期：2026 年 10 月</span>
+      <span>目标：1,283 万</span>
+    </div>
+  </div>
+
+  <div class="oneline">
+    <span class="tag">一句话｜</span>10 月<b>先保利润，再谈规模</b>。两条主线：<b>前端把同一个故事讲到底</b>（营销种草与达短同方向），<b>后端把同一张货盘管到底</b>（利润品放高效渠道，券与补贴用来换流量）。凡是要用“牺牲利润”换来的销量，<b>接下来的时间都不建议做</b>。
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="n">1</span>背景：三个约束叠加</div>
+    <div class="rows">
+      <div class="row"><span class="b b1">保利润</span><span class="d"><b>第一优先级</b>：抖音 10-12 月需完成 4,386 万（月均 1,462 万），既定目标合计仅 3,761 万；而 7-9 月月均只有 1,032 万 —— <b>缺口先放一边</b>，能用利润换来的销量一律不做</span></div>
+      <div class="row"><span class="b b2">搜索走低</span><span class="d">主动需求在减少 → 靠“承接搜索”的增长方式失效，必须转向<b>用内容激发需求</b>；而激发需求最怕的，是信息不一致</span></div>
+      <div class="row"><span class="b b3">大促厮杀</span><span class="d">9 月修容 6 个细分渠道 <b>4 个负增长</b>（达播 -50.0%）；补贴已在加厚：实收/实付比 +9.1% → <b>+14.3%</b></span></div>
+    </div>
+    <div class="find c" style="margin-top:10px"><div class="h">关键事实：9 月的增长其实是“事件驱动”</div><p>抖音全店 GMV +17.9%，但增长高度集中在 9.14-9.20 单周（占 36.9%）—— 原因是 <b>9.20 明星虞书欣进入自播间，并以“明星套组”拉高了客单价</b>；事件一过就连续两周回落（-48.5%、-18.3%）。<b>事件能造高点，承接才能留住高点。</b></p></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="n">2</span>策略一 · 内容：一个故事，全渠道同频</div>
+    <div class="finds">
+      <div class="find b"><div class="h">主故事：只讲一件事</div><p>锁定 <b>同一个妆容场景 / 同一类人群</b>，讲“什么时候用、用完什么样”，不盲目堆产品参数 —— 落到 <b>一句主张 + 一个场景 + 三个卖点</b>（示例主张：OOO 修容笔 · 一画立体，素颜也敢出镜）。<b>营销种草要与达短讲同一个方向</b>，向用户聚焦传递同一个产品故事。</p></div>
+      <div class="find a"><div class="h">对标发现：方向没问题，缺的是“最后一公里”</div><p>OOO 优质素材的方向聚焦度是三品牌最高（20 条中 13 条围绕修容笔、人群“新手/零基础”全周期零漂移），但深度教学型素材互动率、收藏均为全系前二，<b>GPM 却只有 10-50</b>（全片无价格、无活动、无 CTA）；有价格锚 + CTA 的素材 GPM 达 <b>50-200</b>。三品牌内容评分几乎相同（53.3 / 54.6），转化却差 3 倍 —— <b>差在“有没有把内容接到转化链上”</b>。</p></div>
+    </div>
+    <div class="ttl">10 月内容执行清单</div>
+    <table>
+      <thead><tr><th>动作</th><th>怎么做</th></tr></thead>
+      <tbody>
+        <tr><td class="gold">保留主线</td><td>修容笔 + 新手/零基础继续做主线，不换方向</td></tr>
+        <tr><td class="gold">补转化钩</td><td>每条素材必须带 ① 价格锚（用单块价衬托整盘）② 明确 CTA</td></tr>
+        <tr><td class="gold">钩子前置</td><td>价格与 CTA 出现在全片前 1/3（≤15 秒），不放片尾</td></tr>
+        <tr><td class="gold">单点聚焦</td><td>一条视频只讲一个卖点，不做大而全教程</td></tr>
+        <tr><td class="gold">主动祛疑</td><td>提前排除“断层发灰”“融妆打架”两个修容翻车点</td></tr>
+        <tr><td class="gold">矩阵复用</td><td>同达人 / 矩阵号复用，把月投稿量恢复到 ≥5 条</td></tr>
+      </tbody>
+    </table>
+    <div class="ttl">四条同频规则</div>
+    <ul class="decide">
+      <li><span class="q">①</span><span><b>一个内容框架</b>：市场端输出「主张 + 场景 + 三个卖点 + 主视觉」；各渠道可发散再创作，但<b>核心点不能增减</b></span></li>
+      <li><span class="q">②</span><span><b>一套话题词</b>：种草与达短投放同一话题，不各自造句</span></li>
+      <li><span class="q">③</span><span><b>一张节奏表</b>：brief 与脚本确认阶段就带上同一份框架（内容在制作前统一）；窗口内不换说法</span></li>
+      <li><span class="q">④</span><span><b>一页框架卡</b>：各端口制作前自查对齐；大促主推内容做前置确认，其余事后需要可抽检</span></li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="n">3</span>策略二 · 货盘 / 价盘：先分层，再定位</div>
+    <table>
+      <thead><tr><th>渠道</th><th>定位</th><th>货盘</th><th>价盘</th></tr></thead>
+      <tbody>
+        <tr><td>自播</td><td class="gold">利润主阵地</td><td>利润品（正装 + 组合装）</td><td>正价、机制最小</td></tr>
+        <tr><td>自营商品卡</td><td class="gold">利润 + 复购</td><td>利润品 + 复购装</td><td>与自播同价</td></tr>
+        <tr><td>达短</td><td class="dim">规模 + 蓄水</td><td>流量品 + 入门组合</td><td>中价带、与自播错位</td></tr>
+        <tr><td>达播</td><td class="dim">节点爆发</td><td>专场组合 / 特供规格</td><td>最低价红线管理</td></tr>
+      </tbody>
+    </table>
+    <div class="find c" style="margin-top:10px"><div class="h">券与补贴：能让别人掏钱的让价，就别自己掏</div><p>平台智能优惠券 / 平台补贴 / 达人补贴让用户实付变低，但品牌生意额按 <b>实收</b> 口径统计，<b>短期不减品牌实收</b>（9 月实收客单 58 元 &gt; 实付客单 50.73 元）；长期实付低位会拉低价格锚、伤品牌形象与提价空间；<b>开券转化好，还能换来平台的流量倾斜</b>。</p></div>
+    <div class="ttl">三条红线：避免渠道间内耗</div>
+    <ul class="decide">
+      <li><span class="q">①</span><span><b>同款不同价</b>：日常期同一 SKU 在自播 / 商品卡的价差 <b>= 0</b>；平台券与达人补贴造成的实付差单独记账、不计入</span></li>
+      <li><span class="q">②</span><span><b>达人机制不撞自播</b>：达播专场不与自播同款同机制、不同时段开播</span></li>
+      <li><span class="q">③</span><span><b>大促排期错峰</b>：自播大场与达播专场分日排期，不抢同一波流量</span></li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="n">4</span>10 月节奏：四周四段（目标 1,283 万）</div>
+    <div class="stages">
+      <div class="stage"><span class="no">1</span><div><div class="t">10.1-10.7 · 立故事</div><div class="d">主故事首发、全渠道对齐；种草与达短同波次铺量；自播承接讲解</div></div></div>
+      <div class="stage"><span class="no">2</span><div><div class="t">10.8-10.14 · 立货盘</div><div class="d">货组表 / 价格表 / 利润表定稿；利润品机制锁定并小流量测试；流量品测款</div></div></div>
+      <div class="stage"><span class="no">3</span><div><div class="t">10.15-10.20 · 收割</div><div class="d">自播大场 × 达播专场（错峰）；达短与种草同方向导流至自播</div></div></div>
+      <div class="stage"><span class="no">4</span><div><div class="t">10.21-10.31 · 收口</div><div class="d">主推不达标即切备份；月末对照缺口逐渠道补位；启动 11 月双 11 排期</div></div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="n">5</span>需要明确的 4 项关键</div>
+    <ul class="decide">
+      <li><span class="q">Q1</span><span><b>Q4 利润目标口径</b>：毛利率下限 / 利润额 / 费用率上限</span></li>
+      <li><span class="q">Q2</span><span><b>货盘清单与价格权限</b>：可做流量品的 SKU、品牌侧折扣权限与下限、平台券与达人补贴的额度上限</span></li>
+      <li><span class="q">Q3</span><span><b>价盘方案定版</b>：日常同价 + 大促特供的两段式是否采用</span></li>
+      <li><span class="q">Q4</span><span><b>主故事确认</b>：主张语 / 场景 / 三个卖点的最终版本</span></li>
+    </ul>
+  </div>
+
+  <div class="tail">
+    <b>10 月只做两件事</b>：把同一个故事讲到底、把同一张货盘管到底。<br>
+    完整方案（背景研判 · 内容对标 · 货盘与价盘细则 · 落地节奏 · 风险与保底 · 待办清单）见
+    <a href="https://yingtian121.github.io/burn-share/open/ooo-oct-plan.html" target="_blank" style="color:#e0b85c">《OOO 10月策略建议》完整版</a>。
+  </div>
+
+  <div class="foot">OOO 10月策略建议 · 精简版 ｜ 口径：内容电商-抖音 ｜ 2026 年 10 月</div>
+
+</div>
+
+</body>
+</html>
