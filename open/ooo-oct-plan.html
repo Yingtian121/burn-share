@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OOO 10月策略建议 · Q4 保利润下的内容聚焦与货盘协同</title>
+<style>
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg:#f6f7f9; --panel:#ffffff; --panel2:#f0f2f6; --border:#e3e6ec;
+    --gold:#b8860b; --gold-dim:rgba(184,134,11,.08); --gold-line:rgba(184,134,11,.32);
+    --red:#c0392b; --red-dim:rgba(192,57,43,.06); --red-line:rgba(192,57,43,.3);
+    --green:#2e7d4f; --green-dim:rgba(46,125,79,.06);
+    --blue:#2f5d9e; --blue-dim:rgba(47,93,158,.06);
+    --ink:#1f2937; --dim:#5b6a80; --muted:#93a1b4;
+  }
+  body { font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif; background:var(--bg); color:var(--ink); font-size:14px; line-height:1.75; }
+  ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#cdd4dd;border-radius:3px}
+  .wrap{display:flex;min-height:100vh}
+
+  /* TOC */
+  .toc{width:218px;flex-shrink:0;border-right:1px solid var(--border);padding:28px 0;position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--panel)}
+  .toc-brand{padding:0 22px 16px;border-bottom:1px solid var(--border);margin-bottom:12px}
+  .toc-brand .k{font-size:11px;color:var(--muted);letter-spacing:3px}
+  .toc-brand .name{font-size:15px;font-weight:800;color:var(--gold);margin-top:4px}
+  .toc-item{display:flex;align-items:center;gap:10px;padding:9px 22px;color:var(--dim);font-size:13px;cursor:pointer;border-left:2px solid transparent;transition:all .2s;text-decoration:none}
+  .toc-item:hover{color:var(--ink);background:var(--panel2)}
+  .toc-item.active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-dim);font-weight:700}
+  .toc-item .num{font-size:11px;color:var(--muted);width:16px}
+  .toc-item.active .num{color:var(--gold)}
+  .main{flex:1;max-width:960px;margin:0 auto;padding:36px 44px 100px}
+
+  /* 封面 */
+  .cover{padding:52px 40px 42px;margin-bottom:36px;background:linear-gradient(160deg,#ffffff,#f7f3e8);border:1px solid var(--border);border-radius:6px;text-align:center;position:relative}
+  .cover .kicker{font-size:12px;color:var(--muted);letter-spacing:5px;margin-bottom:12px}
+  .cover h1{font-size:29px;font-weight:800;letter-spacing:1px;margin-bottom:10px;line-height:1.4}
+  .cover h1 span{color:var(--gold)}
+  .cover .sub{color:var(--dim);font-size:13.5px;letter-spacing:1px;margin-bottom:24px}
+  .cover-meta{display:flex;justify-content:center;gap:36px;font-size:12px;color:var(--muted);border-top:1px dashed var(--border);padding-top:16px;flex-wrap:wrap}
+  .cover-meta div b{display:block;color:var(--dim);font-size:13px;margin-top:3px}
+
+  /* 章节 */
+  .sec{margin-bottom:52px;scroll-margin-top:20px}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  .sec-no{font-size:11px;color:var(--gold);font-weight:800;letter-spacing:1px;border:1px solid var(--gold-line);padding:3px 9px;border-radius:3px;background:var(--gold-dim);white-space:nowrap}
+  .sec-title{font-size:21px;font-weight:800;letter-spacing:.5px}
+  .sec-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--gold-line),transparent)}
+  .sec-lead{color:var(--dim);margin-bottom:20px;padding-left:2px}
+  .sub{margin-bottom:20px}
+  .sub-title{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .sub-title::before{content:'';width:13px;height:2px;background:var(--gold)}
+
+  .grid{display:grid;gap:12px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}
+  @media(max-width:900px){.g2,.g3{grid-template-columns:1fr}.toc{display:none}.main{padding:20px}}
+
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:15px 17px}
+  .card.warn{border-left:3px solid var(--red);background:linear-gradient(90deg,var(--red-dim),var(--panel))}
+  .card.pos{border-left:3px solid var(--green);background:linear-gradient(90deg,var(--green-dim),var(--panel))}
+  .card.info{border-left:3px solid var(--blue);background:linear-gradient(90deg,var(--blue-dim),var(--panel))}
+  .card.key{border-left:3px solid var(--gold);background:linear-gradient(90deg,var(--gold-dim),var(--panel))}
+  .card h4{font-size:13.5px;font-weight:700;margin-bottom:7px}
+  .card .body{color:var(--dim);font-size:12.8px}
+  .card .body b{color:var(--ink)}
+  .card ul{list-style:none}
+  .card li{padding:2px 0 2px 15px;position:relative;color:var(--dim);font-size:12.8px}
+  .card li::before{content:'▸';position:absolute;left:0;color:var(--gold)}
+
+  /* 数据 */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+  @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:14px;text-align:center}
+  .kpi .l{font-size:11.5px;color:var(--muted);margin-bottom:2px}
+  .kpi .v{font-size:22px;font-weight:800}
+  .kpi .s{font-size:11px;color:var(--dim);margin-top:2px}
+  .data-strip{display:flex;align-items:center;justify-content:center;gap:24px;padding:18px;background:var(--panel);border:1px solid var(--border);border-radius:6px;margin:10px 0}
+  .data-cell{text-align:center}
+  .data-cell .v{font-size:26px;font-weight:800}
+  .data-cell .l{font-size:11px;color:var(--muted);margin-top:2px}
+  .data-arrow{font-size:20px;color:var(--gold)}
+  .v-red{color:var(--red)}.v-gold{color:var(--gold)}.v-dim{color:var(--dim)}.v-blue{color:var(--blue)}.v-green{color:var(--green)}
+
+  /* 结论条 */
+  .verdict{margin:16px 0;padding:13px 17px;border:1px solid var(--gold-line);border-radius:6px;background:linear-gradient(120deg,var(--gold-dim),transparent 75%);font-size:12.8px;color:#6b5416;line-height:1.85;position:relative}
+  .verdict::before{content:'要点提示';position:absolute;top:-10px;left:13px;background:var(--bg);padding:1px 8px;font-size:10.5px;font-weight:800;color:var(--gold);letter-spacing:3px;border:1px solid var(--gold-line);border-radius:3px}
+  .verdict b{color:var(--ink)}
+  .verdict.red{border-color:var(--red-line);background:linear-gradient(120deg,var(--red-dim),transparent 75%)}
+  .verdict.red::before{content:'风险提示';color:var(--red);border-color:var(--red-line)}
+  .verdict.blue{border-color:rgba(47,93,158,.3);background:linear-gradient(120deg,var(--blue-dim),transparent 75%)}
+  .verdict.blue::before{content:'研判要点';color:var(--blue);border-color:rgba(47,93,158,.3)}
+
+  /* 表格 */
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin:10px 0;background:var(--panel)}
+  th,td{border:1px solid var(--border);padding:8px 10px;text-align:center}
+  th{background:var(--panel2);color:var(--dim);font-weight:700}
+  td{color:var(--dim)}
+  td.bad{color:var(--red);font-weight:700}td.good{color:var(--green);font-weight:700}td.gold{color:var(--gold);font-weight:700}td.b{font-weight:700;color:var(--ink)}
+  tr.hl{background:#fdf9f0}
+
+  /* 执行链 */
+  .chain{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}
+  .chain .node{flex:1;min-width:150px;background:var(--panel);border:1px solid var(--border);border-top:3px solid var(--gold);border-radius:6px;padding:11px 13px;position:relative}
+  .chain .node .p{font-size:11px;color:var(--gold);font-weight:800;letter-spacing:1px}
+  .chain .node .t{font-weight:800;font-size:13.5px;margin:2px 0}
+  .chain .node .d{font-size:11.5px;color:var(--dim);line-height:1.6}
+  .chain .node.cur{border-top-color:var(--blue)}
+  .chain .node.cur .p{color:var(--blue)}
+
+  /* 时间轴 */
+  .ops{position:relative;margin:18px 0 6px;padding-left:24px}
+  .ops::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--gold),#d8dde5)}
+  .op-item{position:relative;padding-bottom:18px}
+  .op-item:last-child{padding-bottom:0}
+  .op-item::before{content:'';position:absolute;left:-23px;top:6px;width:9px;height:9px;border-radius:50%;background:#fff;border:2px solid var(--gold)}
+  .op-time{font-size:10.5px;color:var(--gold);font-weight:800;letter-spacing:1.5px}
+  .op-name{font-size:14.5px;font-weight:800;margin:2px 0 3px}
+  .op-desc{color:var(--dim);font-size:12.5px}
+  .op-desc b{color:var(--ink)}
+
+  .footer{text-align:center;color:var(--muted);font-size:12px;padding:32px 0 16px;letter-spacing:1px}
+  .fade{opacity:0;transform:translateY(12px);transition:all .6s ease}
+  .fade.on{opacity:1;transform:none}
+  .tag{font-size:11px;padding:2px 9px;border-radius:3px;font-weight:700;display:inline-block}
+  .tag-dy{background:rgba(212,83,58,.1);color:#c0392b}
+  .tag-db{background:rgba(47,93,158,.1);color:var(--blue)}
+  .tag-ds{background:rgba(90,138,58,.1);color:var(--green)}
+
+  .verdict.concl{border-color:var(--gold-line);background:linear-gradient(120deg,var(--gold-dim),transparent 75%);color:#6b5416}
+  .verdict.concl::before{content:'▲ 板块结论';color:var(--gold);border-color:var(--gold-line);letter-spacing:2px}
+  .tbl-note{font-size:11.5px;color:var(--muted);margin:4px 0 14px;line-height:1.7}
+  .card.mt{margin-top:12px}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc">
+    <div class="toc-brand">
+      <div class="k">STRATEGY PLAN</div>
+      <div class="name">10月策略建议</div>
+    </div>
+      <a class="toc-item" href="#s1"><span class="num">一</span>背景研判</a>
+      <a class="toc-item" href="#s2"><span class="num">二</span>内容聚焦与同频</a>
+      <a class="toc-item" href="#s3"><span class="num">三</span>货盘与价盘定位</a>
+      <a class="toc-item" href="#s4"><span class="num">四</span>10月落地节奏</a>
+      <a class="toc-item" href="#s5"><span class="num">五</span>风险与保底</a>
+      <a class="toc-item" href="#s6"><span class="num">六</span>待决事项</a>
+  </nav>
+
+  <div class="main">
+
+    <div class="cover" id="cover">
+      <div class="kicker">STRATEGY PLAN · 内部策略规划</div>
+      <h1>OOO <span>10月策略建议</span></h1>
+      <div class="sub">Q4 保利润 · 一个故事讲到底 × 一张货盘管到底</div>
+      <div class="cover-meta">
+        <div>口径<b>内容电商-抖音</b></div>
+        <div>10 月抖音目标<b>1,283 万</b></div>
+        <div>抖音 10-12 月需完成<b>4,386 万</b></div>
+        <div>执行周期<b>2026 年 10 月</b></div>
+      </div>
+    </div>
+
+    <div class="verdict blue">
+      <b>一句话方案</b>：10 月不做全面铺开，只做两件事 —— <b>前端把同一个故事讲到底</b>（市场端 / 种草 / 达短 / 自播讲同一件事、同一个方向），<b>后端把同一张货盘管到底</b>（流量品与利润品分工、渠道间货盘与价盘不互撞）。在暂时不具备与核心竞争对手正面争夺市场声量的条件下，<b>先把内部的声音收拢成一股、把渠道间的内耗从机制上掐掉</b>，是当下成本最低、确定性最高的一步。
+    </div>
+
+    <!-- ================= 一 ================= -->
+    <section class="sec fade" id="s1">
+      <div class="sec-head"><span class="sec-no">第一部分</span><h2 class="sec-title">背景研判：三个约束叠加，10 月不能用“增量打法”</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">10 月同时面对利润要求、需求收缩与竞争加剧。三个约束共同指向一件事：<b>不能靠“加投放、加折扣”解决问题</b>。</p>
+      <div class="tbl-note">口径说明：本方案<b>只针对抖音（内容电商-抖音）</b>——目标与达成情况均为抖音口径（不含达播、达短）；渠道明细为抖音站内细分渠道（自播 / 达短 / 自营商品卡 / 达播 / 自营短视频 / 合作商品卡）。</div>
+
+      <div class="kpis">
+        <div class="kpi"><div class="l">10 月抖音目标</div><div class="v">1,283<span style="font-size:13px">万</span></div><div class="s">内容电商-抖音（不含达播 / 达短）</div></div>
+        <div class="kpi"><div class="l">9 月抖音达成率</div><div class="v v-red">86.3<span style="font-size:13px">%</span></div><div class="s">1,108.0 万 / 目标 1,283 万</div></div>
+        <div class="kpi"><div class="l">1-9 月抖音累计达成</div><div class="v">69.5<span style="font-size:13px">%</span></div><div class="s">10,014 万 / 14,400 万</div></div>
+        <div class="kpi"><div class="l">抖音 10-12 月需完成</div><div class="v v-gold">4,386<span style="font-size:13px">万</span></div><div class="s">月均 1,462 万，较既定目标须超额 16.6%</div></div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">约束一：Q4 保利润是第一优先级 —— 补缺口排在后面，有条件再谈</div>
+        <div class="card key">
+          <ul>
+            <li><b>优先级先讲清楚</b>：Q4 <b>保利润是首位</b>。在利润守得住的前提下，<b>有条件、有机会再补缺口</b>——凡是要用“牺牲利润”换来的销量，接下来的时间都不建议做。<b>规模目标让位于利润目标</b>，是本方案所有取舍的总开关</li>
+            <li><b>缺口有多大（抖音口径）</b>：全年目标 <b>14,400 万</b>、1-9 月实际 <b>10,014 万</b>（达成 <b>69.5%</b>）→ 10-12 月需完成 <b>4,386 万</b>（月均 <b>1,462 万</b>），而既定目标合计仅 <b>3,761 万</b>，若要全额补齐须超额 <b>16.6%</b></li>
+            <li><b>规模很难自然补齐</b>：7-9 月抖音月均仅 <b>1,032 万</b>，距需月均 1,462 万差 <b>42%</b>；按此趋势延续，全年完成率约 <b>91.0%</b>（缺 1,290 万）——<b>越是这样，越不能靠加投放硬冲</b>：加投放＝加费用，直接吃掉本就不厚的利润</li>
+            <li><b>所以 10 月的取舍是明确的</b>：先确保利润不被击穿，再谈规模；增长靠<b>结构优化</b>——把销售额从低效渠道挪到高效渠道、把价格从“折扣”挪到“组合装”</li>
+            <li><b>9 月的增长其实是“事件驱动”</b>：抖音全店 GMV <b>+17.9%</b>，但增长高度集中在 <b>9.14-9.20 单周（占 9 月相关 5 周的 36.9%）</b>——原因是 <b>9.20 明星虞书欣进入自播间，并以“明星套组”拉高了客单价</b>；峰值后连续两周回落（<b>-48.5%、-18.3%</b>）。这说明高峰来自<b>可设计的事件动作</b>，而非自然增长；<b>事件红利一退就回落，日常承接力才是真正要补的短板</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub" style="margin-top:14px">
+        <div class="sub-title">约束二：品牌搜索持续走低 —— 兴趣池在收缩</div>
+        <div class="card warn">
+          <div class="body" style="margin-bottom:8px">
+            <b>判断</b>：搜索走低意味着<b>主动需求在减少</b>。靠“承接存量搜索”的增长方式正在失效，必须转向<b>用内容激发需求</b>——而“激发需求”最怕的，是信息不一致。
+          </div>
+          <ul>
+            <li><b>行业在涨、OOO 未同步受益</b>：修容行业销售额同比 <b>+23.2%</b>、已连续 28 周正增长；同期 OOO 修容行业份额降至 <b>13.0%</b>（年内最低）</li>
+            <li><b>蓄水与承接脱节</b>：品牌 A3 人群 <b>+80.1%</b>（蓄水在涨），但修容笔 SPU A3 <b>-5.4%</b>、购买人数 <b>-13.9%</b>（承接在退）</li>
+            <li><b>量在退、价在撑</b>：修容类目曝光 <b>-13.0%</b>、商品曝光-成交转化率 <b>-5.9%</b>，全靠实收客单价 <b>+31.8%</b> 托住 <b>+8.3%</b> 的销售额</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub" style="margin-top:14px">
+        <div class="sub-title">约束三：大促进入更激烈厮杀 —— 让价有两本账，别用错那一本</div>
+        <div class="card warn">
+          <ul>
+            <li><b>竞争已经白热化</b>：9 月修容类目 6 个细分渠道中已有 <b>4 个负增长</b>——达播 <b>-50.0%</b>、合作商品卡 -27.8%、达短 -20.2%、自营短视频 -4.0%；增长几乎只靠自播（<b>+59.3%</b>，占类目 53.7%）与自营商品卡（+25.1%）。大促期竞品大概率进一步放价</li>
+            <li><b>⚠️ 但“让价”要分两本账</b>：① <b>平台智能优惠券 / 平台补贴 / 达人补贴</b>——用户实付价变低，而品牌生意额（销售额）按<b>实收</b>口径统计，<b>短期不影响品牌实收</b>：9 月实收客单价 <b>58 元</b> 反而高于实付客单价 <b>50.73 元</b>（实收/实付比 <b>+14.3%</b>，较 8 月 +9.1% 扩大）；② <b>品牌自身让价</b>（改价 / 品牌券 / 加赠）——直接从实收里出，<b>每一分都吃利润</b></li>
+            <li><b>而且开券还能换流量</b>：从平台侧了解，<b>抖音平台对开券有一定引导</b>；开券若带来好的转化，<b>平台的流量分发机制会识别，并给转化好的品牌一定的流量倾斜</b>——这让券不只是一次让价，更是<b>换平台流量的一张牌</b></li>
+            <li><b>所以 10 月的打法很清楚</b>：<b>价格这件事，能让平台和达人掏钱的，就别自己掏</b>——优先用平台券、平台补贴、达人补贴把用户实付降下来（<b>用户实付降了，但掏钱的不是品牌，实收不减；转化好了还能换来平台流量</b>）；品牌自己的改价、品牌券，只留给必须争的节点，日常守正价。若简单跟进降价，等于用利润换销量，与 Q4 保利润直接冲突（机制拆解见 3.5）</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="verdict concl">
+        三个约束指向同一个结论：<b>10 月先保利润，再谈规模</b>。增长不能来自“加投放、加折扣”，只能来自 —— ① <b>内容聚焦</b>（同一个故事讲透，提高每一次曝光的转化效率）；② <b>货盘结构优化</b>（让高毛利品在高效渠道卖出更多）。9 月已经给出方向：修容类目在流量 <b>-13.0%</b> 的情况下靠客单价 <b>+31.8%</b> 撑住 <b>+8.3%</b> 的销售额 —— <b>价与结构，比量更能决定 Q4 的利润</b>；抖音 10-12 月 4,386 万的缺口，能补多少补多少，但绝不能用利润去换。
+      </div>
+    </section>
+
+    <!-- ================= 二 ================= -->
+    <section class="sec fade" id="s2">
+      <div class="sec-head"><span class="sec-no">第二部分</span><h2 class="sec-title">策略一 · 营销故事端：一个故事，全渠道同频</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">在暂时不具备和市场核心竞争对手对垒的情况下，先做好内部的聚焦与一致：<b>市场营销与种草维持基本热度（底线），内容方向与销售渠道同频</b>，尤其是<b>营销种草与达短讲同一个方向</b>，向用户聚焦传递同一个产品故事。</p>
+
+      <div class="sub">
+        <div class="sub-title">2.1 问题：达短内容与转化脱节，端口之间是否同频尚无数据可证</div>
+        <div class="card warn">
+          <ul>
+            <li><b>已被数据证实的部分（达短侧）</b>：OOO 优质素材普遍<b>缺价格锚与 CTA</b>——深度教学型素材互动率 3.96% / 4.42%、收藏 1.75 万 / 3.1 万（全系前二），却只有 <b>GPM 10-50</b>；而有价格锚 + CTA 的素材 GPM 达 50-100 / 100-200（详见 2.3）。<b>内容与转化之间是断开的</b></li>
+            <li><b>尚待核实的部分（端口之间）</b>：市场端 / 种草 / 达短三方的内容方向是否一致，<b>目前没有可直接调取的数据</b>（现有素材库只覆盖达人侧“单条播放 ≥100 万”的内容，不含品牌端与种草内容）→ 建议 10 月首周做一次<b>三方素材比对</b>，把“是否同频”变成可检查项（落到 2.5 规则四的审核清单）</li>
+            <li>代价（9 月数据）：修容类目曝光 <b>8,654 万次</b>（-13.0%），商品曝光-成交转化率仅 <b>0.32%</b>（-5.9%）；达短曝光 1,193 万次、转化率 0.51%，销售额 279.5 万（-20.2%）</li>
+            <li>关键判断：<b>不是流量不够，是流量的“解释成本”太高</b>——用户每换一个入口就要重新理解一次，兴趣沉淀不成搜索，搜索沉淀不成购买</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub" style="margin-top:14px">
+        <div class="sub-title">2.2 10 月主故事：只讲一件事（示例参考）</div>
+        <div class="grid g3">
+          <div class="card"><h4>① 一句主张</h4><div class="body">所有渠道出现<b>同一句话</b>，不改写、不拆分、各端口不做自己的版本。</div></div>
+          <div class="card"><h4>② 一个场景</h4><div class="body">锁定<b>同一个妆容场景 / 同一类人群</b>，讲“什么时候用、用完什么样”，不盲目堆产品参数。</div></div>
+          <div class="card"><h4>③ 三个卖点</h4><div class="body">固定<b>三个核心卖点、固定顺序</b>，全渠道一致（顺序变了＝换了一个故事）。</div></div>
+        </div>
+        <div class="tbl-note">承接既有方向，接下来把主故事收敛为 <b>修容笔的具体妆容场景</b>。示例主张（待确认）：<b>「OOO 修容笔 · 一画立体，素颜也敢出镜」</b>。</div>
+      </div>
+
+      <div class="sub" style="margin-top:14px">
+        <div class="sub-title">2.3 内容方向对标：方向不用改，缺的是“最后一公里”</div>
+        <div class="tbl-note" style="margin-top:0">依据《三品牌修容 · 优质素材整合看板》（BABI / OOO / 橘朵 2026 年 1-9 月「单条播放 ≥100 万」素材 113 条逐条拆解）：</div>
+        <table>
+          <thead><tr><th>命题（9 月）</th><th>🟡 BABI</th><th>🔵 OOO</th><th>🔴 橘朵</th></tr></thead>
+          <tbody>
+            <tr><td class="b">内容主线</td><td>长教程妆教 · 对抗式叙事</td><td class="gold">修容笔教程（全周期未变）</td><td>膏体质地实证 · 无粉底 / 一镜到底</td></tr>
+            <tr><td class="b">时长中位</td><td>173 秒（↑ 变长）</td><td class="gold">43 秒（↓ 大幅变短）</td><td>64 秒（→ 不变）</td></tr>
+            <tr><td class="b">转化钩</td><td>首现价格条，<b>但位置在 320 秒之后</b></td><td class="bad">弱：无价格、无活动</td><td class="good">强：活动价 + 强 CTA + 单块价锚</td></tr>
+            <tr class="hl"><td class="b">GPM ≥100 占比</td><td class="bad">22% → 0%</td><td class="bad">35% → 0%</td><td class="good">75% → 78%</td></tr>
+            <tr><td class="b">达人策略</td><td>12 条 / 12 位 · 零复用</td><td>2 条 / 2 位</td><td>10 条 / 8 位 · 矩阵号复用</td></tr>
+          </tbody>
+        </table>
+
+        <div class="grid g3" style="margin-top:12px">
+          <div class="card warn"><h4>发现一 · 方向没问题，钩子缺位</h4><div class="body">OOO 优质素材的方向聚焦度是三品牌最高（20 条中 <b>13 条</b>围绕修容笔、人群「新手/零基础」<b>全周期零漂移</b>）；但深度教学型素材（互动率 3.96% / 4.42%、收藏 1.75 万 / 3.1 万，全系前二）<b>GPM 仅 10-50</b>——原因很直接：<b>全片无价格、无活动、无 CTA</b>。而有价格锚 + CTA 的素材 GPM 达 <b>50-100 / 100-200</b>。</div></div>
+          <div class="card warn"><h4>发现二 · 内容能力相当，转化差 3 倍</h4><div class="body">7-9 月新素材的 14 要素评分三品牌几乎相同（BABI 54.5 / OOO 53.3 / 橘朵 54.6），但 <b>GPM≥100 档占比：橘朵 71% / OOO 26% / BABI 12%</b> → <b>差异不在「内容做得好不好」，在「有没有把内容接到转化链上」</b>。</div></div>
+          <div class="card warn"><h4>发现三 · 执行强度在收缩</h4><div class="body">OOO 月度投稿从 1/3 月各 5 条降到 9 月 <b>2 条</b>（同期 BABI 12 条、橘朵 10 条），时长中位 73 → <b>43 秒</b>。方向没变，但<b>产出量只有竞品的 1/5</b>——热度底线首先要有量兜底。</div></div>
+        </div>
+
+        <div class="tbl-note" style="margin-top:14px;font-weight:700;color:#5b6a80">10 月内容方向执行清单（主线不变，补上“最后一公里”）</div>
+        <table>
+          <thead><tr><th style="width:96px">动作</th><th>怎么做</th><th>依据</th></tr></thead>
+          <tbody>
+            <tr><td class="b" style="white-space:nowrap">保留主线</td><td>修容笔 + 新手/零基础继续做主线，<b>不换方向</b></td><td>OOO 方向零漂移，聚焦度三品牌最高</td></tr>
+            <tr class="hl"><td class="b" style="white-space:nowrap">补转化钩</td><td>每条素材必须带 ① <b>价格锚</b>（用单块价衬托整盘）② <b>明确 CTA</b>（“趁现在有活动 / 赶紧入”）</td><td>OOO 有钩素材 GPM 50-200 vs 无钩 10-50</td></tr>
+            <tr class="hl"><td class="b" style="white-space:nowrap">钩子前置</td><td>价格与 CTA 出现在全片<b>前 1/3（≤15 秒）</b>，不放片尾</td><td>BABI 价格条放在 320 秒后 → GPM≥100 归零</td></tr>
+            <tr><td class="b" style="white-space:nowrap">单点聚焦</td><td>一条视频只讲一个卖点（如“膏体融肤度”），不做大而全教程</td><td>橘朵 86 秒单点内容拿 747.7 万播放（1.45 万粉，515 倍）</td></tr>
+            <tr><td class="b" style="white-space:nowrap">主动祛疑</td><td>提前排除“断层发灰”“融妆打架”两个修容膏翻车点</td><td>橘朵祛疑双点，GPM≥100 占 78%</td></tr>
+            <tr><td class="b" style="white-space:nowrap">矩阵复用</td><td>同达人 / 矩阵号复用，把月投稿量恢复到 <b>≥5 条</b></td><td>橘朵 8 位达人出 10 条；OOO 9 月仅 2 条</td></tr>
+          </tbody>
+        </table>
+        <div class="tbl-note">一句话：<b>OOO 不缺“讲得好”的内容，缺的是“讲完让人下单”的那 5 秒</b>——这也正是“营销种草要与达短、与销售渠道同频”最该落到的实处。</div>
+      </div>
+
+      <div class="sub" style="margin-top:14px">
+        <div class="sub-title">2.4 各端口内容分工：角色不同，但说同一件事</div>
+        <table>
+          <thead><tr><th>端口</th><th>角色</th><th>10 月内容方向（示例参考）</th><th>必须与其他端口一致的项</th></tr></thead>
+          <tbody>
+            <tr class="hl"><td class="b">市场端</td><td>品牌故事 · 氛围底座</td><td>主故事内容 + 主张语 + 主视觉，维持市场热度底线</td><td class="gold">主张语 / 主视觉 / 话题词</td></tr>
+            <tr class="hl"><td class="b">营销种草</td><td>心智植入</td><td>同一主张下的场景化内容（妆容教程 / 前后对比）</td><td class="gold">话题词 / 卖点顺序 / 素材源</td></tr>
+            <tr class="hl"><td class="b">达短</td><td>前端放量 + 导流</td><td><b>与种草同一方向</b>的短视频，讲同一套卖点，为自播导流</td><td class="gold">主张语 / 话术模板 / 导流路径</td></tr>
+            <tr><td class="b">达播</td><td>节点爆发</td><td>同一主张，专场讲透；价格机制按红线执行</td><td class="gold">主张语 / 价格机制 / 话术要点</td></tr>
+            <tr><td class="b">自播</td><td>承接转化</td><td>同一主张的深度讲解 + 卖点演示</td><td class="gold">主张语 / 卖点顺序 / 活动机制</td></tr>
+            <tr><td class="b">商品卡</td><td>长尾承接</td><td>同一主张的详情页 / 主图文案</td><td class="gold">主图 / 卖点文案 / 价格</td></tr>
+          </tbody>
+        </table>
+        <div class="tbl-note">红字三行为 10 月重点对齐端口：<b>市场营销、种草、达短</b> —— 三者讲不同方向，是当前最需要修掉的一处内部损耗。</div>
+      </div>
+
+      <div class="sub" style="margin-top:14px">
+        <div class="sub-title">2.5 同频机制：四条硬规则</div>
+        <div class="grid g2">
+          <div class="card key"><h4>规则一 · 一个内容框架（可发散，核心不能动）</h4><div class="body">市场端输出「1 句主张 + 1 个场景 + 3 个卖点 + 主视觉」作为<b>素材源框架</b>；各渠道可围绕它做发散与再创作（换表达方式、换场景演绎、换达人风格），但<b>框架里的核心点必须保持一致、不能增减</b>——主张、场景、三个卖点，一个不多、一个不少。</div></div>
+          <div class="card key"><h4>规则二 · 一套话题词</h4><div class="body">种草与达短投放<b>同一话题</b>，不各自造句；话题词由市场端统一发放。</div></div>
+          <div class="card key"><h4>规则三 · 一张节奏表</h4><div class="body">管两件事：① <b>前置对齐</b>——达人 brief 与脚本确认阶段就带上同一份内容框架，<b>内容在制作前就已统一</b>；② <b>窗口内不换说法</b>——大促窗口内所有端口沿用同一主张与卖点，不出现第二套说法。</div></div>
+          <div class="card key"><h4>规则四 · 一页框架卡</h4><div class="body">① 发布<b>一页框架卡</b>（主张 / 场景 / 三个卖点 / 不得增减项 / 可用素材包），各端口在制作前<b>自查对齐</b>；② 只对<b>大促主推内容</b>做前置确认，其余按框架卡执行、事后需要可抽检。</div></div>
+        </div>
+      </div>
+
+      <div class="sub" style="margin-top:14px">
+        <div class="sub-title">2.6 底线：市场热度不能破位</div>
+        <div class="card info">
+          <div class="body">保利润 ≠ 停投放。<b>维持基本市场热度是底线</b>——热度一旦破位，恢复成本远高于维持成本，尤其在竞品加码的大促期。建议守住三条底线指标（具体阈值需结合内部基准确认）：</div>
+          <ul>
+            <li>修容类目月曝光 <b>不低于 8,000 万次</b>（9 月为 8,654 万次）</li>
+            <li>种草内容量与话题参与度 <b>不低于 9 月水平</b></li>
+            <li>品牌 A3 人群规模 <b>保持正增长</b>（9 月 +80.1%，蓄水不能停）</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="verdict concl">
+        内容聚焦不是省预算，而是<b>换效率</b>：同样的曝光量，讲一个故事比讲三个故事更容易被记住、更容易转成搜索与成交。9 月修容类目在流量 <b>-13.0%</b> 的同时转化率又跌了 <b>5.9%</b> —— 问题不在量，在“讲什么”。而且看板已经证明：<b>OOO 的内容评分与橘朵几乎相同（53.3 vs 54.6），转化却差 3 倍</b>——接下来要尽量做到 ① <b>营销种草与达短同方向、全渠道同一主张</b>；② <b>每条素材都带上价格锚与前置 CTA</b>，这样更有利于把已拿到的流量接到转化链上。
+      </div>
+    </section>
+
+    <!-- ================= 三 ================= -->
+    <section class="sec fade" id="s3">
+      <div class="sec-head"><span class="sec-no">第三部分</span><h2 class="sec-title">策略二 · 货盘 / 价盘 / 利润：先分层，再定位，后协同</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">围绕利润目标，把货组、价格、利润拆到可执行的颗粒度；再明确各渠道的货盘与价盘定位，<b>从机制上避免内部渠道的恶性竞争</b>。</p>
+
+      <div class="sub">
+        <div class="sub-title">3.1 第一步：把利润目标拆成三张表</div>
+        <table>
+          <thead><tr><th>表</th><th>内容</th><th>关键字段</th><th>用途</th></tr></thead>
+          <tbody>
+            <tr><td class="b">① 货组表</td><td>SKU 清单与定位</td><td>SKU / 品类 / 定位（流量品·利润品·形象品）/ 主推渠道</td><td>决定“卖什么”</td></tr>
+            <tr><td class="b">② 价格表</td><td>各渠道价格与机制</td><td>SKU / 自播价 / 商品卡价 / 达播机制 / 达短机制</td><td>决定“卖多少钱”</td></tr>
+            <tr><td class="b">③ 利润表</td><td>单位经济模型</td><td>客单价 / 毛利率 / 达人佣金 / 投放费比 / 单位利润</td><td>决定“赚多少”</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub" style="margin-top:14px">
+        <div class="sub-title">3.2 第二步：货组分层 —— 明确流量品与利润品</div>
+        <table>
+          <thead><tr><th>定位</th><th>承担什么</th><th>判定标准</th><th>渠道归属（仅做示例参考）</th></tr></thead>
+          <tbody>
+            <tr><td class="b">流量品</td><td>拉新蓄水、撑曝光</td><td>客单价低、转化门槛低、曝光效率高</td><td>达短 / 种草 / 自播引流款</td></tr>
+            <tr class="hl"><td class="b">利润品</td><td>贡献毛利</td><td>客单价高、毛利率高、机制自主可控</td><td>自播正价 / 商品卡 / 达播专场</td></tr>
+            <tr><td class="b">形象品</td><td>撑品牌高度</td><td>高价、低频、不外放折扣</td><td>市场端 / 达播专场</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub" style="margin-top:14px">
+        <div class="sub-title">3.3 第三步：渠道定位与货盘 / 价盘对照（仅供参考）</div>
+        <table>
+          <thead><tr><th>渠道</th><th>定位</th><th>货盘策略</th><th>价盘策略</th></tr></thead>
+          <tbody>
+            <tr class="hl"><td class="b">自播</td><td class="gold">利润主阵地</td><td>利润品为主（正装 + 组合装），修容笔核心款</td><td>正价、机制最小</td></tr>
+            <tr class="hl"><td class="b">自营商品卡</td><td class="gold">利润 + 长尾复购</td><td>利润品 + 复购装</td><td>与自播同价</td></tr>
+            <tr><td class="b">达短</td><td class="v-blue">规模 + 蓄水</td><td>流量品为主 + 入门组合</td><td>中价带，与自播错位</td></tr>
+            <tr><td class="b">达播</td><td>节点爆发</td><td>专场组合 / 特供规格</td><td>最低价红线管理</td></tr>
+            <tr><td class="b">自营短视频</td><td>内容补充</td><td>流量品</td><td>与达短一致</td></tr>
+            <tr><td class="b">合作商品卡</td><td>收缩</td><td>只留高毛利款</td><td>价格上收</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub" style="margin-top:14px">
+        <div class="sub-title">3.4 价盘规则：两段式，把渠道冲突挡在机制之外（具体以最终实际的价盘和货盘为准）</div>
+        <div class="grid g2">
+          <div class="card pos"><h4>日常期 · 同货盘同价格</h4><div class="body">修容笔核心款在<b>自播与自营商品卡同价</b>，渠道间不做价差；避免同款比价、避免左右手互搏。</div></div>
+          <div class="card pos"><h4>大促期 · 差异化货盘</h4><div class="body">达播走<b>特供规格 / 专场组合</b>，与自播同款不撞价；用“规格差异”替代“价格差异”，保住价格体系。</div></div>
+        </div>
+      </div>
+
+      <div class="sub" style="margin-top:14px">
+        <div class="sub-title">3.5 券与补贴怎么算账：短期不伤实收，长期伤价格</div>
+        <div class="grid g3">
+          <div class="card pos"><h4>① 短期 · 不影响品牌实收</h4><div class="body">平台智能优惠券、平台补贴、达人补贴让<b>用户实付价变低</b>，但品牌生意额（销售额）按<b>实收</b>口径统计——这些优惠不由品牌承担，<b>短期不从品牌实收里扣</b>。9 月实测印证：实收客单价 <b>58 元</b> 高于实付客单价 <b>50.73 元</b>（实收/实付比 <b>+14.3%</b>）。</div></div>
+          <div class="card warn"><h4>② 长期 · 伤品牌形象与提价空间</h4><div class="body">用户的价格锚会被拉低——“这个牌子就该几十块”。实付长期处于低位，<b>品牌形象、后续正价销售与提价都会遇到阻力</b>。因此券只能用在<b>节点与拉新</b>，不能做成常态，且<b>不与品牌自身折扣叠加</b>。</div></div>
+          <div class="card info"><h4>③ 平台侧 · 开券有流量倾斜</h4><div class="body">从平台侧了解：<b>抖音平台对开券有一定引导</b>；开券若带来好的转化，<b>平台的流量分发机制会识别，并给转化好的品牌一定的流量倾斜</b>。开券不只是“让价”，它同时是<b>换平台流量的一张牌</b>。</div></div>
+        </div>
+        <div class="card key mt">
+          <div class="body"><b>所以，落到动作上就三句话</b>：① <b>能用就用</b>——平台券、平台补贴、达人补贴不伤品牌实收，优先用它们把用户实付降下来；② <b>只在节点和拉新用</b>——日常守正价，别把价格锚拉低（对应上面的长期风险）；③ <b>券要配上价格锚与强 CTA</b>——转化做起来，平台的流量倾斜才换得回来；品牌自己的改价与品牌券留作最后手段。</div>
+        </div>
+      </div>
+
+      <div class="sub" style="margin-top:14px">
+        <div class="sub-title">3.6 三条红线：避免渠道间恶性竞争</div>
+        <div class="card warn">
+          <ul>
+            <li><b>红线一 · 同款不同价</b>：日常期同一 SKU 在自播 / 商品卡的价差 <b>= 0</b>；大促期特供款与日常款规格必须区隔，价差上限待定（第六部分）。⚠️ <b>口径边界</b>：本红线只约束<b>品牌侧让价</b>（品牌承担的改价 / 品牌券 / 加赠），<b>平台券与达人补贴造成的实付差异不计入</b>——两者分开记账、分开设额度上限（见 3.5）</li>
+            <li><b>红线二 · 达人机制不撞自播</b>：达播专场<b>不与自播同款同机制</b>，不同时段开播；达人侧机制需先过价盘审核</li>
+            <li><b>红线三 · 大促排期错峰</b>：自播大场与达播专场<b>分日排期</b>，不共享同一波流量钩子，避免在同一时间抢同一批用户</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub" style="margin-top:14px">
+        <div class="sub-title">3.7 预案储备：流量品 / 利润品各备 2 套</div>
+        <div class="grid g2">
+          <div class="card"><h4>流量品 · 主推 + 备份</h4><div class="body">2 个入门组合方案；<b>切换触发条件</b>：主推款 3 日内转化率低于约定阈值，或库存不足 → 立即切备份并同步达短 / 种草素材。</div></div>
+          <div class="card"><h4>利润品 · 主推 + 备份</h4><div class="body">2 个组合装方案（正装+小样 / 双支装）；<b>切换触发条件</b>：主推款客单价跌破约定下限，或大促竞品价格压穿 → 切备份规格，守住毛利。</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 四 ================= -->
+    <section class="sec fade" id="s4">
+      <div class="sec-head"><span class="sec-no">第四部分</span><h2 class="sec-title">10 月落地节奏：四周四段，每段有检查点（仅供参考）</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">10 月抖音目标 <b>1,283 万</b>。节奏上先立“故事”与“货盘”两条基线，再进入大促收割。</p>
+
+      <div class="ops">
+        <div class="op-item">
+          <div class="op-time">10.1 - 10.7 · 国庆</div>
+          <div class="op-name">立故事：主故事首发，全渠道对齐</div>
+          <div class="op-desc">市场端输出“1 句主张 + 1 个场景 + 3 个卖点 + 主视觉”；种草与达短<b>同波次</b>铺量；自播承接讲解；达播专场排期与机制确认</div>
+          <div class="op-desc" style="margin-top:4px"><b>检查点</b>：主故事素材上线、话题词统一、<b>达短与种草方向一致</b>（三方素材比对通过）</div>
+        </div>
+        <div class="op-item">
+          <div class="op-time">10.8 - 10.14 · 预热</div>
+          <div class="op-name">立货盘：三张表定稿，价盘红线确认</div>
+          <div class="op-desc">货组表 / 价格表 / 利润表定稿；利润品机制锁定并做小流量测试；流量品测款；达播特供规格确认</div>
+          <div class="op-desc" style="margin-top:4px"><b>检查点</b>：三张表签字确认；同款不同价 = 0 已核；预案（流量品/利润品各 2 套）就位</div>
+        </div>
+        <div class="op-item">
+          <div class="op-time">10.15 - 10.20 · 大促前段</div>
+          <div class="op-name">收割：自播大场 × 达播专场（错峰）</div>
+          <div class="op-desc">自播承担利润品成交主量；达播专场按特供规格爆发；达短与种草同方向放量导流至自播</div>
+          <div class="op-desc" style="margin-top:4px"><b>检查点</b>：利润品 GMV 占比达标；实收客单价不低于 <b>9 月 58 元</b>；价盘未被击穿</div>
+        </div>
+        <div class="op-item">
+          <div class="op-time">10.21 - 10.31 · 后段 / 月末冲刺</div>
+          <div class="op-name">收口：按预案切换，冲 1,283 万</div>
+          <div class="op-desc">主推款不达标即切备份；月末对照缺口逐渠道补位；同步启动 11 月双 11 的货盘与达人档期</div>
+          <div class="op-desc" style="margin-top:4px"><b>检查点</b>：月度达成率（对标 9 月的 86.3% 必须有提升）；利润品占比、客单价、价差三项守线</div>
+        </div>
+      </div>
+
+      <div class="verdict concl">
+        10 月的节奏不追求“月内均匀铺量”，而是<b>前两周把基建立住、后两周集中收口</b>。9 月的经验很清楚：单周（9.14-9.20 占 36.9%）靠 <b>9.20 明星虞书欣进自播间、明星套组拉高客单</b> 打出了高峰，但事件一过就连续两周回落（-48.5%、-18.3%）——<b>事件能造高点，承接才能留住高点</b>。10 月要在<b>大促前把“故事 + 货盘”两条基线立住</b>，让大促的爆发有承接、有延续，而不是又一个脉冲。
+      </div>
+    </section>
+
+    <!-- ================= 五 ================= -->
+    <section class="sec fade" id="s5">
+      <div class="sec-head"><span class="sec-no">第五部分</span><h2 class="sec-title">风险与保底</h2><span class="sec-rule"></span></div>
+      <p class="sec-lead">四类风险在 10 月同时存在，逐条给出应对与保底动作。</p>
+
+      <div class="grid g2">
+        <div class="card warn"><h4>风险一 · 内容仍不同频</h4><div class="body">营销种草与达短继续各讲一套，钱花了、认知没累积。<br><b>对策</b>：四条硬规则 + 同一张审核清单；每周比对一次三方素材，不合规素材当日下架重做。</div></div>
+        <div class="card warn"><h4>风险二 · 价格战侵蚀利润</h4><div class="body">大促期竞品放价，渠道被动跟进。<br><b>对策</b>：两段式价盘 + 三条红线；设“最低价底线”，跌破需上级审批。<b>应对顺序</b>：① 先用<b>平台券 / 达人补贴</b>（不动品牌实收）→ ② 再用<b>规格差异 / 组合装</b>（不动价格体系）→ ③ 最后才动<b>品牌侧让价</b>（需审批）。</div></div>
+        <div class="card warn"><h4>风险三 · 利润品卖不动</h4><div class="body">流量品带来了量，但高客单品没有接住。<br><b>对策</b>：流量品明确“导流到利润品”的动作（直播间引导 / 商品卡关联）；利润品备 2 套预案，按触发条件切换。</div></div>
+        <div class="card warn"><h4>风险四 · 搜索继续走低</h4><div class="body">外部需求端继续收缩，热度破位。<br><b>对策</b>：守住三条热度底线指标；内容聚焦本身就是“造需求”的手段；把品牌 A3 正增长作为硬指标跟进。</div></div>
+      </div>
+
+      <div class="verdict red">
+        <b>保底思路</b>：10 月最坏的情形是“大促没爆发、利润还被价格战吃掉”。既然<b>保利润是首位、缺口排在后面</b>，判断标准就要从“卖了多少”改成“<b>赚了多少</b>”：宁可少卖，不可乱卖。保底动作有三条 —— ① <b>热度不破位</b>（三条底线指标）；② <b>利润品不裸奔</b>（每款都有备份与切换条件）；③ <b>价盘不击穿</b>（同款同价 + 满额审批）。三条守住，即使 10 月规模不达标，也不至于把 Q4 的利润提前花掉。
+      </div>
+    </section>
+
+    <!-- ================= 六 ================= -->
+    <section class="sec fade" id="s6">
+      <div class="sec-head"><span class="sec-no">第六部分</span><h2 class="sec-title">待决事项：需要明确后才能落地的 7 项</h2><span class="sec-rule"></span></div>
+      <table>
+        <thead><tr><th>#</th><th>事项</th><th>需要明确的内容</th><th>影响</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td class="b">1</td><td>Q4 利润目标口径</td><td>利润目标的具体数值：毛利率下限 / 利润额 / 费用率上限</td><td>决定利润表能否填写、货组分层取舍</td></tr>
+          <tr class="hl"><td class="b">2</td><td>货盘清单与价格权限</td><td>可做流量品的 SKU 清单、品牌侧折扣审批权限与下限；以及<b>平台券 / 平台补贴 / 达人补贴的额度上限与审批口</b>（与品牌让价分开记账）</td><td>决定价格表与红线能否执行</td></tr>
+          <tr><td class="b">3</td><td>价盘方案定版</td><td>确认“日常同价 + 大促特供”两段式是否采用</td><td>决定渠道间是否还会互斗</td></tr>
+          <tr><td class="b">4</td><td>渠道定位裁决</td><td>达播是否继续做修容笔专场（还是专做其他高潜力类目新品）</td><td>决定达播渠道的资源投入方式</td></tr>
+          <tr><td class="b">5</td><td>主故事确认</td><td>主张语 / 场景 / 三个卖点的最终版本（市场部）</td><td>决定全渠道内容能否立即开工</td></tr>
+          <tr><td class="b">6</td><td>搜索数据接入</td><td>品牌搜索指数（巨量算数 / 罗盘）的取数口径与更新频率</td><td>把“搜索走低”从背景判断变成可跟踪指标</td></tr>
+          <tr class="hl"><td class="b">7</td><td>抖音细分渠道目标拆解</td><td>现有目标体系只到“内容电商-抖音”一层，站内 6 个细分渠道（自播 / 达短 / 自营商品卡 / 达播 / 自营短视频 / 合作商品卡）缺目标拆分</td><td>没有渠道目标就无法做渠道级利润核算与资源分配（本方案第三部分依赖此项）</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="footer">
+      OOO 10月策略建议 ｜ 依据：2026 年 9 月抖音平台生意复盘、2026 年目标达成进度分析（1-9 月）｜ 目标口径：未税出货收入；抖音口径：实收成交金额 ｜ 内部策略规划
+    </div>
+
+  </div>
+</div>
+
+<script>
+const fades=document.querySelectorAll('.fade');
+const tocItems=document.querySelectorAll('.toc-item');
+const secs=document.querySelectorAll('.sec,.cover');
+function onScroll(){
+  const y=window.scrollY+160;let activeId='cover';
+  secs.forEach(s=>{if(s.offsetTop<=y)activeId=s.id});
+  tocItems.forEach(t=>t.classList.toggle('active',t.getAttribute('href')==='#'+activeId));
+  fades.forEach(f=>{if(f.getBoundingClientRect().top<window.innerHeight-50)f.classList.add('on')});
+}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+document.querySelectorAll('.toc-item').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})})});
+</script>
+
+</body>
+</html>
