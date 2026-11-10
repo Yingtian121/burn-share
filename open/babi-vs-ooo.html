@@ -554,7 +554,7 @@ new Chart(document.getElementById('chart-daily'), {
           callback: function(val, index) {
             const label = this.getLabelForValue(val);
             // 每隔7天显示一次（MM-DD）；autoSkip已关闭，密度完全由本回调控制
-            if (index % 7 === 0 || index === 272) { return label.slice(5); }
+            if (index % 7 === 0 || index === allDates.length - 1) { return label.slice(5); }
             return '';
           }
         }
